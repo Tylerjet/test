@@ -1,0 +1,1749 @@
+-------------------- Log Start | Sat Feb 10 10:09:19 2024 --------------------
+data_path: /home/test/printer_data
+is_default_data_path: False
+config_file: /home/test/printer_data/config/moonraker.conf
+startup_warnings: []
+verbose: False
+debug: False
+asyncio_debug: False
+is_backup_config: False
+is_python_package: False
+instance_uuid: d50656f5433e49099928afcb992797bb
+unix_socket_path: /home/test/printer_data/comms/moonraker.sock
+software_version: v0.8.0-309-gf946e6a
+git_branch: master
+git_remote: origin
+git_repo_url: https://github.com/Arksine/moonraker.git
+modified_files: []
+unofficial_components: []
+log_file: /home/test/printer_data/logs/moonraker.log
+python_version: 3.11.2 (main, Mar 13 2023, 12:18:29) [GCC 12.2.0]
+launch_args: /home/test/moonraker-env/bin/python /home/test/moonraker/moonraker/moonraker.py -d /home/test/printer_data
+msgspec_enabled: False
+uvloop_enabled: False
+
+#################### Moonraker Configuration ####################
+
+[server]
+host = 0.0.0.0
+port = 7125
+klippy_uds_address = /home/test/printer_data/comms/klippy.sock
+
+[authorization]
+trusted_clients = 
+	10.0.0.0/16
+	10.0.0.0/8
+	127.0.0.0/8
+	169.254.0.0/16
+	172.16.0.0/12
+	192.168.0.0/16
+	FE80::/10
+	::1/128
+cors_domains = 
+	*.lan
+	*.local
+	*://localhost
+	*://localhost:*
+	*://my.mainsail.xyz
+	*://app.fluidd.xyz
+
+[octoprint_compat]
+
+[history]
+
+[update_manager]
+channel = dev
+refresh_interval = 168
+
+[update_manager fluidd-config]
+type = git_repo
+primary_branch = master
+path = ~/fluidd-config
+origin = https://github.com/fluidd-core/fluidd-config.git
+managed_services = klipper
+
+[update_manager fluidd]
+type = web
+channel = stable
+repo = fluidd-core/fluidd
+path = ~/fluidd
+
+[update_manager klipper-backup]
+type = git_repo
+path = ~/klipper-backup
+origin = https://github.com/Staubgeborener/klipper-backup.git
+managed_services = moonraker
+primary_branch = main
+
+#################################################################
+All Configuration Files:
+/home/test/printer_data/config/moonraker.conf
+#################################################################
+
+Database Versions: pylmdb = 1.4.1, lmdb = (0, 9, 29)
+Unsafe Shutdown Count: 2
+
+System Info:
+
+***python***
+  version: (3, 11, 2, 'final', 0)
+  version_string: 3.11.2 (main, Mar 13 2023, 12:18:29) [GCC 12.2.0]
+
+***cpu_info***
+  cpu_count: 4
+  bits: 64bit
+  processor: x86_64
+  cpu_desc: AMD Ryzen 7 2700 Eight-Core Processor
+  serial_number: 
+  hardware_desc: 
+  model: 
+  total_memory: 2097152
+  memory_units: kB
+
+***sd_info***
+
+***distribution***
+  name: Debian GNU/Linux 12 (bookworm)
+  id: debian
+  version: 12
+  version_parts: {'major': '12', 'minor': '', 'build_number': ''}
+  like: 
+  codename: bookworm
+  release_info: {}
+
+***virtualization***
+  virt_type: none
+  virt_identifier: none
+
+***network***
+
+***canbus***
+
+***Allowed Services***
+  klipper_mcu
+  webcamd
+  MoonCord
+  KlipperScreen
+  moonraker-telegram-bot
+  moonraker-obico
+  sonar
+  crowsnest
+  octoeverywhere
+  ratos-configurator
+Module libcamera unavailble, import failed
+
+Systemd unit moonraker.service:
+unit_name: moonraker.service
+is_default: True
+manager: systemd
+Properties:
+**Requires=['network-online.target', 'sysinit.target', 'system.slice']
+**After=['sysinit.target', 'network-online.target', 'basic.target', 'systemd-journald.socket', 'system.slice', '-.mount']
+**SupplementaryGroups=['moonraker-admin']
+**EnvironmentFiles=/home/test/printer_data/systemd/moonraker.env
+**ExecStart=/home/test/moonraker-env/bin/python $MOONRAKER_ARGS
+**WorkingDirectory=/home/test/moonraker
+**FragmentPath=/etc/systemd/system/moonraker.service
+**Description=API Server for Klipper SV1
+**User=test
+
+Systemd unit klipper.service:
+unit_name: klipper.service
+is_default: True
+manager: systemd
+Properties:
+**Requires=['sysinit.target', 'system.slice']
+**After=['sysinit.target', 'basic.target', '-.mount', 'system.slice', 'network-online.target', 'systemd-journald.socket']
+**SupplementaryGroups=[]
+**EnvironmentFiles=/home/test/printer_data/systemd/klipper.env
+**ExecStart=/home/test/klippy-env/bin/python $KLIPPER_ARGS
+**WorkingDirectory=/home/test/klipper
+**FragmentPath=/etc/systemd/system/klipper.service
+**Description=Klipper 3D Printer Firmware SV1
+**User=test
+Git Repo moonraker: No warnings detected
+Git Repo klipper: No warnings detected
+Git Repo fluidd-config: No warnings detected
+Git Repo klipper-backup: No warnings detected
+Klipper Version: v0.12.0-102-g9f41f53c
+2024-02-10 03:09:19,783 [authorization.py:_check_trusted_connection()] - Trusted Connection Detected, IP: 10.0.1.2
+2024-02-10 03:09:19,795 [application.py:log_request()] - 404 GET /server/database/item?namespace=webcams (10.0.1.2) [_TRUSTED_USER_] 3.96ms
+2024-02-10 03:09:19,877 [application.py:log_request()] - 101 GET /websocket?token=A56OQWFFEX53SPHFUR5YKGDEV77FE5OX (10.0.1.2) [_TRUSTED_USER_] 0.32ms
+2024-02-10 03:09:19,877 [websockets.py:open()] - Websocket Opened: ID: 140143887606864, Proxied: False, User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36, Host Name: 10.0.1.229
+2024-02-10 03:09:19,884 [websockets.py:_handle_identify()] - Websocket 140143887606864 Client Identified - Name: fluidd, Version: 1.27.1-2056453, Type: web
+2024-02-10 03:09:19,884 [file_manager.py:get_file_list()] - Updating File List <config>...
+2024-02-10 03:09:45,218 [application.py:prepare()] - Upload Request Received from 10.0.1.2
+Content-Type: 
+2024-02-10 03:09:45,219 [application.py:prepare()] - Upload Request Received from 10.0.1.2
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundarytYPUwn3dgDNvmBBe
+2024-02-10 03:09:45,222 [application.py:post()] - Processing Uploaded File: printer.cfg
+2024-02-10 03:09:45,223 [application.py:log_request()] - 201 POST /server/files/upload (10.0.1.2) [_TRUSTED_USER_] 4.24ms
+2024-02-10 03:09:45,252 [klippy_connection.py:_on_connection_closed()] - Klippy Connection Removed
+2024-02-10 03:09:45,268 [common.py:build_error()] - JSON-RPC Request Error - Requested Method: printer.info, Code: 503, Message: Klippy Host not connected
+2024-02-10 03:09:46,506 [klippy_connection.py:_do_connect()] - Klippy Connection Established
+2024-02-10 03:09:46,519 [server.py:add_log_rollover_item()] - 
+Systemd unit klipper.service:
+unit_name: klipper.service
+is_default: True
+manager: systemd
+Properties:
+**Requires=['system.slice', 'sysinit.target']
+**After=['systemd-journald.socket', 'system.slice', '-.mount', 'basic.target', 'network-online.target', 'sysinit.target']
+**SupplementaryGroups=[]
+**EnvironmentFiles=/home/test/printer_data/systemd/klipper.env
+**ExecStart=/home/test/klippy-env/bin/python $KLIPPER_ARGS
+**WorkingDirectory=/home/test/klipper
+**FragmentPath=/etc/systemd/system/klipper.service
+**Description=Klipper 3D Printer Firmware SV1
+**User=test
+2024-02-10 03:09:55,898 [application.py:prepare()] - Upload Request Received from 10.0.1.2
+Content-Type: 
+2024-02-10 03:09:55,899 [application.py:prepare()] - Upload Request Received from 10.0.1.2
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundaryaPF4TC4YTTBQC6ly
+2024-02-10 03:09:55,901 [application.py:post()] - Processing Uploaded File: test.txt
+2024-02-10 03:09:55,902 [application.py:log_request()] - 201 POST /server/files/upload (10.0.1.2) [_TRUSTED_USER_] 3.09ms
+2024-02-10 03:10:13,263 [application.py:prepare()] - Upload Request Received from 10.0.1.2
+Content-Type: 
+2024-02-10 03:10:13,264 [application.py:prepare()] - Upload Request Received from 10.0.1.2
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary76628ttDoaCck8Ak
+2024-02-10 03:10:13,266 [application.py:post()] - Processing Uploaded File: test.txt
+2024-02-10 03:10:13,267 [application.py:log_request()] - 201 POST /server/files/upload (10.0.1.2) [_TRUSTED_USER_] 2.97ms
+2024-02-10 03:11:16,583 [klippy_connection.py:_request_initial_subscriptions()] - Webhooks Subscribed
+2024-02-10 03:11:16,583 [klippy_connection.py:_request_initial_subscriptions()] - GCode Output Subscribed
+2024-02-10 03:11:16,583 [klippy_connection.py:_check_ready()] - 
+mcu 'mcu': Unable to connect
+Once the underlying issue is corrected, use the
+"FIRMWARE_RESTART" command to reset the firmware, reload the
+config, and restart the host software.
+Error configuring printer
+
+2024-02-10 03:12:55,099 [application.py:prepare()] - Upload Request Received from 10.0.1.2
+Content-Type: 
+2024-02-10 03:12:55,100 [application.py:prepare()] - Upload Request Received from 10.0.1.2
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundarynXKTtskr2uh1jrNF
+2024-02-10 03:12:55,102 [application.py:post()] - Processing Uploaded File: file.txt
+2024-02-10 03:12:55,103 [application.py:log_request()] - 201 POST /server/files/upload (10.0.1.2) [_TRUSTED_USER_] 3.08ms
+2024-02-10 03:17:20,711 [application.py:prepare()] - Upload Request Received from 10.0.1.2
+Content-Type: 
+2024-02-10 03:17:20,712 [application.py:prepare()] - Upload Request Received from 10.0.1.2
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundarybq3Yrx8wxLCtsODL
+2024-02-10 03:17:20,714 [application.py:post()] - Processing Uploaded File: file.txt
+2024-02-10 03:17:20,715 [application.py:log_request()] - 201 POST /server/files/upload (10.0.1.2) [_TRUSTED_USER_] 3.06ms
+2024-02-10 03:17:22,357 [application.py:prepare()] - Upload Request Received from 10.0.1.2
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundaryyqx7yYsIUHDd4H4f
+2024-02-10 03:17:22,359 [application.py:post()] - Processing Uploaded File: file.txt
+2024-02-10 03:17:22,360 [application.py:log_request()] - 201 POST /server/files/upload (10.0.1.2) [_TRUSTED_USER_] 3.03ms
+2024-02-10 03:18:44,361 [application.py:prepare()] - Upload Request Received from 10.0.1.2
+Content-Type: 
+2024-02-10 03:18:44,362 [application.py:prepare()] - Upload Request Received from 10.0.1.2
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundaryH5RU7R6LhWOWRhFT
+2024-02-10 03:18:44,364 [application.py:post()] - Processing Uploaded File: file.txt
+2024-02-10 03:18:44,365 [application.py:log_request()] - 201 POST /server/files/upload (10.0.1.2) [_TRUSTED_USER_] 3.07ms
+2024-02-10 03:32:24,451 [application.py:prepare()] - Upload Request Received from 10.0.1.2
+Content-Type: 
+2024-02-10 03:32:24,452 [application.py:prepare()] - Upload Request Received from 10.0.1.2
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundarya7SeByKLytxWFJo7
+2024-02-10 03:32:24,454 [application.py:post()] - Processing Uploaded File: file.txt
+2024-02-10 03:32:24,455 [application.py:log_request()] - 201 POST /server/files/upload (10.0.1.2) [_TRUSTED_USER_] 3.40ms
+2024-02-10 03:33:45,567 [application.py:prepare()] - Upload Request Received from 10.0.1.2
+Content-Type: 
+2024-02-10 03:33:45,568 [application.py:prepare()] - Upload Request Received from 10.0.1.2
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundaryPdFmKJIIkc5FV1E4
+2024-02-10 03:33:45,570 [application.py:post()] - Processing Uploaded File: file.txt
+2024-02-10 03:33:45,571 [application.py:log_request()] - 201 POST /server/files/upload (10.0.1.2) [_TRUSTED_USER_] 3.00ms
+2024-02-10 03:35:35,986 [application.py:prepare()] - Upload Request Received from 10.0.1.2
+Content-Type: 
+2024-02-10 03:35:35,987 [application.py:prepare()] - Upload Request Received from 10.0.1.2
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundaryBUiGPIvKBJMNLBdG
+2024-02-10 03:35:35,989 [application.py:post()] - Processing Uploaded File: file.txt
+2024-02-10 03:35:35,991 [application.py:log_request()] - 201 POST /server/files/upload (10.0.1.2) [_TRUSTED_USER_] 3.25ms
+2024-02-10 03:36:37,470 [application.py:prepare()] - Upload Request Received from 10.0.1.2
+Content-Type: 
+2024-02-10 03:36:37,472 [application.py:prepare()] - Upload Request Received from 10.0.1.2
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundaryMTD7sugjmfX73k36
+2024-02-10 03:36:37,473 [application.py:post()] - Processing Uploaded File: file.txt
+2024-02-10 03:36:37,474 [application.py:log_request()] - 201 POST /server/files/upload (10.0.1.2) [_TRUSTED_USER_] 2.91ms
+2024-02-10 03:40:27,620 [base_deploy.py:log_info()] - PackageKit: Detected 0 package updates:
+
+2024-02-10 03:40:27,627 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/moonraker status --porcelain -b) successfully finished
+2024-02-10 03:40:27,632 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/moonraker branch --list --no-color) successfully finished
+2024-02-10 03:40:27,636 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/moonraker remote get-url origin) successfully finished
+2024-02-10 03:40:28,093 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/moonraker fetch origin --prune --progress) successfully finished
+2024-02-10 03:40:28,096 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/moonraker merge-base --is-ancestor HEAD origin/master) successfully finished
+2024-02-10 03:40:28,098 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/moonraker rev-parse HEAD) successfully finished
+2024-02-10 03:40:28,105 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/moonraker describe --always --tags --long --dirty --abbrev=8) successfully finished
+2024-02-10 03:40:28,107 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/moonraker rev-parse origin/master) successfully finished
+2024-02-10 03:40:28,113 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/moonraker describe origin/master --always --tags --long --abbrev=8) successfully finished
+2024-02-10 03:40:28,117 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/moonraker rev-list HEAD..67c98f6a7610ff4196954a665e5599bea9ccf5ac --count) successfully finished
+2024-02-10 03:40:28,119 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/moonraker log f946e6a28d7506d8da16851cbf730fa89b267926..origin/master --format="sha:%H%x1Dauthor:%an%x1Ddate:%ct%x1Dsubject:%s%x1Dmessage:%b%x1E" --max-count=100) successfully finished
+2024-02-10 03:40:28,142 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/moonraker for-each-ref --count=100 --sort='-creatordate' --contains=HEAD --merged=origin/master --format='%(if)%(*objecttype)%(then)%(*objecttype) %(*objectname)%(else)%(objecttype) %(objectname)%(end) %(refname)' 'refs/tags') successfully finished
+2024-02-10 03:40:28,142 [git_deploy.py:log_repo_info()] - Git Repo moonraker Detected:
+Owner: Arksine
+Repository Name: moonraker
+Path: /home/test/moonraker
+Remote: origin
+Branch: master
+Remote URL: https://github.com/Arksine/moonraker.git
+Recovery URL: https://github.com/Arksine/moonraker.git
+Current Commit SHA: f946e6a28d7506d8da16851cbf730fa89b267926
+Upstream Commit SHA: 67c98f6a7610ff4196954a665e5599bea9ccf5ac
+Current Version: v0.8.0-309-gf946e6a2
+Upstream Version: v0.8.0-310-g67c98f6a
+Rollback Commit: 27a02952184e8d253510073704d0e10f2807e06b
+Rollback Branch: master
+Rollback Version: v0.8.0-245-g27a02952
+Is Dirty: False
+Is Detached: False
+Is Shallow: False
+Commits Behind Count: 1
+Diverged: False
+2024-02-10 03:40:28,142 [base_deploy.py:log_info()] - Git Repo moonraker: Channel: dev
+2024-02-10 03:40:28,142 [base_deploy.py:log_info()] - Git Repo moonraker: Validity check for git repo passed
+2024-02-10 03:40:28,158 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/klipper status --porcelain -b) successfully finished
+2024-02-10 03:40:28,163 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/klipper branch --list --no-color) successfully finished
+2024-02-10 03:40:28,167 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/klipper remote get-url origin) successfully finished
+2024-02-10 03:40:28,737 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/klipper fetch origin --prune --progress) successfully finished
+2024-02-10 03:40:28,740 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/klipper merge-base --is-ancestor HEAD origin/master) successfully finished
+2024-02-10 03:40:28,742 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/klipper rev-parse HEAD) successfully finished
+2024-02-10 03:40:28,782 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/klipper describe --always --tags --long --dirty --abbrev=8) successfully finished
+2024-02-10 03:40:28,784 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/klipper rev-parse origin/master) successfully finished
+2024-02-10 03:40:28,818 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/klipper describe origin/master --always --tags --long --abbrev=8) successfully finished
+2024-02-10 03:40:28,821 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/klipper rev-list HEAD..6ce6fbbce07605010c0d4fa8eaa0ebcde01e53db --count) successfully finished
+2024-02-10 03:40:28,824 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/klipper log 9f41f53c5e364694b9b41279b3b3aee34250b93a..origin/master --format="sha:%H%x1Dauthor:%an%x1Ddate:%ct%x1Dsubject:%s%x1Dmessage:%b%x1E" --max-count=100) successfully finished
+2024-02-10 03:40:28,860 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/klipper for-each-ref --count=100 --sort='-creatordate' --contains=HEAD --merged=origin/master --format='%(if)%(*objecttype)%(then)%(*objecttype) %(*objectname)%(else)%(objecttype) %(objectname)%(end) %(refname)' 'refs/tags') successfully finished
+2024-02-10 03:40:28,861 [git_deploy.py:log_repo_info()] - Git Repo klipper Detected:
+Owner: Klipper3d
+Repository Name: klipper
+Path: /home/test/klipper
+Remote: origin
+Branch: master
+Remote URL: https://github.com/Klipper3d/klipper
+Recovery URL: https://github.com/Klipper3d/klipper
+Current Commit SHA: 9f41f53c5e364694b9b41279b3b3aee34250b93a
+Upstream Commit SHA: 6ce6fbbce07605010c0d4fa8eaa0ebcde01e53db
+Current Version: v0.12.0-102-g9f41f53c
+Upstream Version: v0.12.0-103-g6ce6fbbc
+Rollback Commit: b50d6669a8b491edf07602c0528d26abe8985536
+Rollback Branch: master
+Rollback Version: v0.12.0-61-gb50d6669
+Is Dirty: False
+Is Detached: False
+Is Shallow: False
+Commits Behind Count: 1
+Diverged: False
+2024-02-10 03:40:28,861 [base_deploy.py:log_info()] - Git Repo klipper: Channel: dev
+2024-02-10 03:40:28,861 [base_deploy.py:log_info()] - Git Repo klipper: Validity check for git repo passed
+2024-02-10 03:40:28,866 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/fluidd-config status --porcelain -b) successfully finished
+2024-02-10 03:40:28,870 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/fluidd-config branch --list --no-color) successfully finished
+2024-02-10 03:40:28,874 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/fluidd-config remote get-url origin) successfully finished
+2024-02-10 03:40:29,430 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/fluidd-config fetch origin --prune --progress) successfully finished
+2024-02-10 03:40:29,432 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/fluidd-config merge-base --is-ancestor HEAD origin/master) successfully finished
+2024-02-10 03:40:29,434 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/fluidd-config rev-parse HEAD) successfully finished
+2024-02-10 03:40:29,437 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/fluidd-config describe --always --tags --long --dirty --abbrev=8) successfully finished
+2024-02-10 03:40:29,439 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/fluidd-config rev-parse origin/master) successfully finished
+2024-02-10 03:40:29,442 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/fluidd-config describe origin/master --always --tags --long --abbrev=8) successfully finished
+2024-02-10 03:40:29,445 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/fluidd-config rev-list HEAD..ce48c5854e9ca3ca72b63d0327069fac20e94c7c --count) successfully finished
+2024-02-10 03:40:29,445 [git_deploy.py:log_repo_info()] - Git Repo fluidd-config Detected:
+Owner: fluidd-core
+Repository Name: fluidd-config
+Path: /home/test/fluidd-config
+Remote: origin
+Branch: master
+Remote URL: https://github.com/fluidd-core/fluidd-config.git
+Recovery URL: https://github.com/fluidd-core/fluidd-config.git
+Current Commit SHA: ce48c5854e9ca3ca72b63d0327069fac20e94c7c
+Upstream Commit SHA: ce48c5854e9ca3ca72b63d0327069fac20e94c7c
+Current Version: v1.2.0-0-gce48c585
+Upstream Version: v1.2.0-0-gce48c585
+Rollback Commit: ce48c5854e9ca3ca72b63d0327069fac20e94c7c
+Rollback Branch: master
+Rollback Version: v0.0.0-11-gce48c585-inferred
+Is Dirty: False
+Is Detached: False
+Is Shallow: False
+Commits Behind Count: 0
+Diverged: False
+2024-02-10 03:40:29,445 [base_deploy.py:log_info()] - Git Repo fluidd-config: Channel: dev
+2024-02-10 03:40:29,445 [base_deploy.py:log_info()] - Git Repo fluidd-config: Validity check for git repo passed
+2024-02-10 03:40:29,605 [base_deploy.py:log_info()] - Web Client fluidd: Detected
+Repo: fluidd-core/fluidd
+Channel: stable
+Path: /home/test/fluidd
+Local Version: v1.27.1
+Remote Version: v1.28.0
+Valid: True
+Fallback Detected: False
+Pre-release: False
+Download Url: https://github.com/fluidd-core/fluidd/releases/download/v1.28.0/fluidd.zip
+Download Size: 3629558
+Content Type: application/zip
+Rollback Version: v1.27.1
+Rollback Repo: fluidd-core/fluidd
+2024-02-10 03:40:29,610 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/klipper-backup status --porcelain -b) successfully finished
+2024-02-10 03:40:30,118 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/klipper-backup branch --list --no-color) successfully finished
+2024-02-10 03:40:30,121 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/klipper-backup remote get-url origin) successfully finished
+2024-02-10 03:40:30,464 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/klipper-backup fetch origin --prune --progress) successfully finished
+2024-02-10 03:40:30,467 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/klipper-backup merge-base --is-ancestor HEAD origin/main) successfully finished
+2024-02-10 03:40:30,468 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/klipper-backup rev-parse HEAD) successfully finished
+2024-02-10 03:40:30,472 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/klipper-backup describe --always --tags --long --dirty --abbrev=8) successfully finished
+2024-02-10 03:40:30,474 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/klipper-backup rev-parse origin/main) successfully finished
+2024-02-10 03:40:30,477 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/klipper-backup describe origin/main --always --tags --long --abbrev=8) successfully finished
+2024-02-10 03:40:30,480 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/klipper-backup rev-list HEAD..2346e4f996d9509b1c1ec0632499d4537d6cdf57 --count) successfully finished
+2024-02-10 03:40:30,480 [git_deploy.py:log_repo_info()] - Git Repo klipper-backup Detected:
+Owner: Staubgeborener
+Repository Name: klipper-backup
+Path: /home/test/klipper-backup
+Remote: origin
+Branch: main
+Remote URL: https://github.com/Staubgeborener/klipper-backup.git
+Recovery URL: https://github.com/Staubgeborener/klipper-backup.git
+Current Commit SHA: 2346e4f996d9509b1c1ec0632499d4537d6cdf57
+Upstream Commit SHA: 2346e4f996d9509b1c1ec0632499d4537d6cdf57
+Current Version: 1.2.0-1-g2346e4f9
+Upstream Version: 1.2.0-1-g2346e4f9
+Rollback Commit: cb50055e3fee7cfb22d4ae235c72c00a5d93fd75
+Rollback Branch: main
+Rollback Version: 1.2.0-0-gcb50055e
+Is Dirty: False
+Is Detached: False
+Is Shallow: False
+Commits Behind Count: 0
+Diverged: False
+2024-02-10 03:40:30,480 [base_deploy.py:log_info()] - Git Repo klipper-backup: Channel: dev
+2024-02-10 03:40:30,480 [base_deploy.py:log_info()] - Git Repo klipper-backup: Validity check for git repo passed
+2024-02-10 03:40:33,323 [base_deploy.py:log_info()] - Web Client fluidd: Detected
+Repo: fluidd-core/fluidd
+Channel: stable
+Path: /home/test/fluidd
+Local Version: v1.28.0
+Remote Version: v1.28.0
+Valid: True
+Fallback Detected: False
+Pre-release: False
+Download Url: https://github.com/fluidd-core/fluidd/releases/download/v1.28.0/fluidd.zip
+Download Size: 3629558
+Content Type: application/zip
+Rollback Version: v1.27.1
+Rollback Repo: fluidd-core/fluidd
+2024-02-10 03:40:33,634 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/klipper fetch origin --prune --progress) successfully finished
+2024-02-10 03:40:33,637 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/klipper merge-base --is-ancestor HEAD origin/master) successfully finished
+2024-02-10 03:40:34,054 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/klipper pull --progress) successfully finished
+2024-02-10 03:40:34,069 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/klipper status --porcelain -b) successfully finished
+2024-02-10 03:40:34,074 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/klipper branch --list --no-color) successfully finished
+2024-02-10 03:40:34,077 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/klipper remote get-url origin) successfully finished
+2024-02-10 03:40:34,079 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/klipper merge-base --is-ancestor HEAD origin/master) successfully finished
+2024-02-10 03:40:34,081 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/klipper rev-parse HEAD) successfully finished
+2024-02-10 03:40:34,125 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/klipper describe --always --tags --long --dirty --abbrev=8) successfully finished
+2024-02-10 03:40:34,127 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/klipper rev-parse origin/master) successfully finished
+2024-02-10 03:40:34,163 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/klipper describe origin/master --always --tags --long --abbrev=8) successfully finished
+2024-02-10 03:40:34,166 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/klipper rev-list HEAD..6ce6fbbce07605010c0d4fa8eaa0ebcde01e53db --count) successfully finished
+2024-02-10 03:40:34,166 [git_deploy.py:log_repo_info()] - Git Repo klipper Detected:
+Owner: Klipper3d
+Repository Name: klipper
+Path: /home/test/klipper
+Remote: origin
+Branch: master
+Remote URL: https://github.com/Klipper3d/klipper
+Recovery URL: https://github.com/Klipper3d/klipper
+Current Commit SHA: 6ce6fbbce07605010c0d4fa8eaa0ebcde01e53db
+Upstream Commit SHA: 6ce6fbbce07605010c0d4fa8eaa0ebcde01e53db
+Current Version: v0.12.0-103-g6ce6fbbc
+Upstream Version: v0.12.0-103-g6ce6fbbc
+Rollback Commit: 9f41f53c5e364694b9b41279b3b3aee34250b93a
+Rollback Branch: master
+Rollback Version: v0.12.0-102-g9f41f53c
+Is Dirty: False
+Is Detached: False
+Is Shallow: False
+Commits Behind Count: 0
+Diverged: False
+2024-02-10 03:40:34,166 [base_deploy.py:log_info()] - Git Repo klipper: Channel: dev
+2024-02-10 03:40:34,166 [base_deploy.py:log_info()] - Git Repo klipper: Validity check for git repo passed
+2024-02-10 03:40:34,195 [klippy_connection.py:_on_connection_closed()] - Klippy Connection Removed
+2024-02-10 03:40:34,208 [common.py:build_error()] - JSON-RPC Request Error - Requested Method: printer.info, Code: 503, Message: Klippy Host not connected
+2024-02-10 03:40:34,446 [klippy_connection.py:_do_connect()] - Klippy Connection Established
+2024-02-10 03:40:34,710 [server.py:add_log_rollover_item()] - Klipper Version: v0.12.0-103-g6ce6fbbc
+2024-02-10 03:40:35,032 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/moonraker fetch origin --prune --progress) successfully finished
+2024-02-10 03:40:35,034 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/moonraker merge-base --is-ancestor HEAD origin/master) successfully finished
+2024-02-10 03:40:35,369 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/moonraker pull --progress) successfully finished
+2024-02-10 03:40:35,375 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/moonraker status --porcelain -b) successfully finished
+2024-02-10 03:40:35,379 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/moonraker branch --list --no-color) successfully finished
+2024-02-10 03:40:35,383 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/moonraker remote get-url origin) successfully finished
+2024-02-10 03:40:35,385 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/moonraker merge-base --is-ancestor HEAD origin/master) successfully finished
+2024-02-10 03:40:35,387 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/moonraker rev-parse HEAD) successfully finished
+2024-02-10 03:40:35,395 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/moonraker describe --always --tags --long --dirty --abbrev=8) successfully finished
+2024-02-10 03:40:35,397 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/moonraker rev-parse origin/master) successfully finished
+2024-02-10 03:40:35,403 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/moonraker describe origin/master --always --tags --long --abbrev=8) successfully finished
+2024-02-10 03:40:35,405 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/moonraker rev-list HEAD..67c98f6a7610ff4196954a665e5599bea9ccf5ac --count) successfully finished
+2024-02-10 03:40:35,405 [git_deploy.py:log_repo_info()] - Git Repo moonraker Detected:
+Owner: Arksine
+Repository Name: moonraker
+Path: /home/test/moonraker
+Remote: origin
+Branch: master
+Remote URL: https://github.com/Arksine/moonraker.git
+Recovery URL: https://github.com/Arksine/moonraker.git
+Current Commit SHA: 67c98f6a7610ff4196954a665e5599bea9ccf5ac
+Upstream Commit SHA: 67c98f6a7610ff4196954a665e5599bea9ccf5ac
+Current Version: v0.8.0-310-g67c98f6a
+Upstream Version: v0.8.0-310-g67c98f6a
+Rollback Commit: f946e6a28d7506d8da16851cbf730fa89b267926
+Rollback Branch: master
+Rollback Version: v0.8.0-309-gf946e6a2
+Is Dirty: False
+Is Detached: False
+Is Shallow: False
+Commits Behind Count: 0
+Diverged: False
+2024-02-10 03:40:35,406 [base_deploy.py:log_info()] - Git Repo moonraker: Channel: dev
+2024-02-10 03:40:35,406 [base_deploy.py:log_info()] - Git Repo moonraker: Validity check for git repo passed
+2024-02-10 03:40:35,423 [websockets.py:on_close()] - Websocket Closed: ID: 140143887606864 Close Code: 1001, Close Reason: None, Pong Time Elapsed: 5.55
+2024-02-10 03:40:35,462 [server.py:_handle_term_signal()] - Exiting with signal SIGTERM
+2024-02-10 03:40:35,564 [klippy_connection.py:_on_connection_closed()] - Klippy Connection Removed
+2024-02-10 03:40:35,567 [database.py:close()] - Database statistics:
+
+announcements:
+psize: 4096
+depth: 0
+branch_pages: 0
+leaf_pages: 0
+overflow_pages: 0
+entries: 0
+authorized_users:
+psize: 4096
+depth: 1
+branch_pages: 0
+leaf_pages: 1
+overflow_pages: 0
+entries: 1
+fluidd:
+psize: 4096
+depth: 1
+branch_pages: 0
+leaf_pages: 1
+overflow_pages: 0
+entries: 6
+gcode_metadata:
+psize: 4096
+depth: 0
+branch_pages: 0
+leaf_pages: 0
+overflow_pages: 0
+entries: 0
+history:
+psize: 4096
+depth: 0
+branch_pages: 0
+leaf_pages: 0
+overflow_pages: 0
+entries: 0
+moonraker:
+psize: 4096
+depth: 1
+branch_pages: 0
+leaf_pages: 1
+overflow_pages: 0
+entries: 8
+update_manager:
+psize: 4096
+depth: 2
+branch_pages: 1
+leaf_pages: 2
+overflow_pages: 0
+entries: 6
+2024-02-10 03:40:35,578 [server.py:main()] - Server Shutdown
+-------------------- Log Start | Sat Feb 10 10:40:35 2024 --------------------
+data_path: /home/test/printer_data
+is_default_data_path: False
+config_file: /home/test/printer_data/config/moonraker.conf
+startup_warnings: []
+verbose: False
+debug: False
+asyncio_debug: False
+is_backup_config: False
+is_python_package: False
+instance_uuid: d50656f5433e49099928afcb992797bb
+unix_socket_path: /home/test/printer_data/comms/moonraker.sock
+software_version: v0.8.0-310-g67c98f6
+git_branch: master
+git_remote: origin
+git_repo_url: https://github.com/Arksine/moonraker.git
+modified_files: []
+unofficial_components: []
+log_file: /home/test/printer_data/logs/moonraker.log
+python_version: 3.11.2 (main, Mar 13 2023, 12:18:29) [GCC 12.2.0]
+launch_args: /home/test/moonraker-env/bin/python /home/test/moonraker/moonraker/moonraker.py -d /home/test/printer_data
+msgspec_enabled: False
+uvloop_enabled: False
+2024-02-10 03:40:35,901 [confighelper.py:read_file()] - Configuration File '/home/test/printer_data/config/moonraker.conf' parsed, total size: 911 B
+2024-02-10 03:40:35,901 [server.py:add_log_rollover_item()] - 
+#################### Moonraker Configuration ####################
+
+[server]
+host = 0.0.0.0
+port = 7125
+klippy_uds_address = /home/test/printer_data/comms/klippy.sock
+
+[authorization]
+trusted_clients = 
+	10.0.0.0/16
+	10.0.0.0/8
+	127.0.0.0/8
+	169.254.0.0/16
+	172.16.0.0/12
+	192.168.0.0/16
+	FE80::/10
+	::1/128
+cors_domains = 
+	*.lan
+	*.local
+	*://localhost
+	*://localhost:*
+	*://my.mainsail.xyz
+	*://app.fluidd.xyz
+
+[octoprint_compat]
+
+[history]
+
+[update_manager]
+channel = dev
+refresh_interval = 168
+
+[update_manager fluidd-config]
+type = git_repo
+primary_branch = master
+path = ~/fluidd-config
+origin = https://github.com/fluidd-core/fluidd-config.git
+managed_services = klipper
+
+[update_manager fluidd]
+type = web
+channel = stable
+repo = fluidd-core/fluidd
+path = ~/fluidd
+
+[update_manager klipper-backup]
+type = git_repo
+path = ~/klipper-backup
+origin = https://github.com/Staubgeborener/klipper-backup.git
+managed_services = moonraker
+primary_branch = main
+
+#################################################################
+All Configuration Files:
+/home/test/printer_data/config/moonraker.conf
+#################################################################
+2024-02-10 03:40:35,926 [server.py:load_component()] - Component (secrets) loaded
+2024-02-10 03:40:35,928 [server.py:load_component()] - Component (template) loaded
+2024-02-10 03:40:35,930 [server.py:load_component()] - Component (klippy_connection) loaded
+2024-02-10 03:40:36,087 [server.py:load_component()] - Component (application) loaded
+2024-02-10 03:40:36,094 [server.py:load_component()] - Component (websockets) loaded
+2024-02-10 03:40:36,113 [server.py:load_component()] - Component (dbus_manager) loaded
+2024-02-10 03:40:36,116 [server.py:add_log_rollover_item()] - 
+Database Versions: pylmdb = 1.4.1, lmdb = (0, 9, 29)
+Unsafe Shutdown Count: 2
+2024-02-10 03:40:36,118 [server.py:load_component()] - Component (database) loaded
+2024-02-10 03:40:36,124 [file_manager.py:__init__()] - Using File System Observer: inotify
+2024-02-10 03:40:36,127 [server.py:load_component()] - Component (file_manager) loaded
+2024-02-10 03:40:36,131 [authorization.py:__init__()] - Authorization Configuration Loaded
+Trusted Clients:
+10.0.0.0/16
+10.0.0.0/8
+127.0.0.0/8
+169.254.0.0/16
+172.16.0.0/12
+192.168.0.0/16
+fe80::/10
+::1/128
+CORS Domains:
+.*\.lan
+.*\.local
+.*://localhost
+.*://localhost:.*
+.*://my\.mainsail\.xyz
+.*://app\.fluidd\.xyz
+2024-02-10 03:40:36,132 [server.py:load_component()] - Component (authorization) loaded
+2024-02-10 03:40:36,133 [server.py:load_component()] - Component (klippy_apis) loaded
+2024-02-10 03:40:36,162 [server.py:add_log_rollover_item()] - 
+System Info:
+
+***python***
+  version: (3, 11, 2, 'final', 0)
+  version_string: 3.11.2 (main, Mar 13 2023, 12:18:29) [GCC 12.2.0]
+
+***cpu_info***
+  cpu_count: 4
+  bits: 64bit
+  processor: x86_64
+  cpu_desc: AMD Ryzen 7 2700 Eight-Core Processor
+  serial_number: 
+  hardware_desc: 
+  model: 
+  total_memory: 2097152
+  memory_units: kB
+
+***sd_info***
+
+***distribution***
+  name: Debian GNU/Linux 12 (bookworm)
+  id: debian
+  version: 12
+  version_parts: {'major': '12', 'minor': '', 'build_number': ''}
+  like: 
+  codename: bookworm
+  release_info: {}
+
+***virtualization***
+  virt_type: none
+  virt_identifier: none
+
+***network***
+
+***canbus***
+
+***Allowed Services***
+  klipper_mcu
+  webcamd
+  MoonCord
+  KlipperScreen
+  moonraker-telegram-bot
+  moonraker-obico
+  sonar
+  crowsnest
+  octoeverywhere
+  ratos-configurator
+2024-02-10 03:40:36,163 [server.py:load_component()] - Component (shell_command) loaded
+2024-02-10 03:40:36,163 [machine.py:__init__()] - Using System Provider: systemd_dbus
+2024-02-10 03:40:36,165 [server.py:add_log_rollover_item()] - Module libcamera unavailble, import failed
+2024-02-10 03:40:36,165 [server.py:load_component()] - Component (machine) loaded
+2024-02-10 03:40:36,166 [server.py:load_component()] - Component (data_store) loaded
+2024-02-10 03:40:36,167 [proc_stats.py:__init__()] - Unable to find 'vcgencmd', throttle checking disabled
+2024-02-10 03:40:36,167 [server.py:load_component()] - Component (proc_stats) loaded
+2024-02-10 03:40:36,167 [server.py:load_component()] - Component (job_state) loaded
+2024-02-10 03:40:36,169 [server.py:load_component()] - Component (job_queue) loaded
+2024-02-10 03:40:36,172 [server.py:load_component()] - Component (http_client) loaded
+2024-02-10 03:40:36,178 [server.py:load_component()] - Component (announcements) loaded
+2024-02-10 03:40:36,179 [server.py:load_component()] - Component (webcam) loaded
+2024-02-10 03:40:36,180 [server.py:load_component()] - Component (extensions) loaded
+2024-02-10 03:40:36,181 [server.py:load_component()] - Component (history) loaded
+2024-02-10 03:40:36,182 [server.py:load_component()] - Component (octoprint_compat) loaded
+2024-02-10 03:40:36,197 [base_deploy.py:log_info()] - Git Repo moonraker: Detected virtualenv: /home/test/moonraker-env
+2024-02-10 03:40:36,198 [base_deploy.py:log_info()] - Git Repo klipper: Detected virtualenv: /home/test/klippy-env
+2024-02-10 03:40:36,200 [server.py:load_component()] - Component (update_manager) loaded
+2024-02-10 03:40:36,200 [server.py:_initialize_component()] - Performing Component Post Init: [dbus_manager]
+2024-02-10 03:40:36,203 [server.py:_initialize_component()] - Performing Component Post Init: [file_manager]
+2024-02-10 03:40:36,203 [server.py:_initialize_component()] - Performing Component Post Init: [authorization]
+2024-02-10 03:40:36,203 [server.py:_initialize_component()] - Performing Component Post Init: [machine]
+2024-02-10 03:40:36,203 [machine.py:validation_init()] - Installation version in database up to date
+2024-02-10 03:40:36,347 [machine.py:check_virt_status()] - Virtualized Environment Detected, Type: container id: lxc
+2024-02-10 03:40:36,350 [machine.py:_find_public_ip()] - Detected Local IP: 10.0.1.229
+2024-02-10 03:40:36,350 [webcam.py:_set_default_host_ip()] - Default public webcam address set: http://10.0.1.229
+2024-02-10 03:40:36,361 [server.py:add_log_rollover_item()] - 
+Systemd unit moonraker.service:
+unit_name: moonraker.service
+is_default: True
+manager: systemd
+Properties:
+**Requires=['sysinit.target', 'network-online.target', 'system.slice']
+**After=['sysinit.target', 'basic.target', 'system.slice', 'systemd-journald.socket', 'network-online.target', '-.mount']
+**SupplementaryGroups=['moonraker-admin']
+**EnvironmentFiles=/home/test/printer_data/systemd/moonraker.env
+**ExecStart=/home/test/moonraker-env/bin/python $MOONRAKER_ARGS
+**WorkingDirectory=/home/test/moonraker
+**FragmentPath=/etc/systemd/system/moonraker.service
+**Description=API Server for Klipper SV1
+**User=test
+2024-02-10 03:40:36,361 [server.py:_initialize_component()] - Performing Component Post Init: [proc_stats]
+2024-02-10 03:40:36,361 [server.py:_initialize_component()] - Performing Component Post Init: [announcements]
+2024-02-10 03:40:36,361 [server.py:_initialize_component()] - Performing Component Post Init: [webcam]
+2024-02-10 03:40:36,361 [webcam.py:_set_default_host_ip()] - Default public webcam address set: http://10.0.1.229
+2024-02-10 03:40:36,361 [server.py:_initialize_component()] - Performing Component Post Init: [klippy_connection]
+2024-02-10 03:40:36,361 [server.py:add_log_rollover_item()] - 
+Systemd unit klipper.service:
+unit_name: klipper.service
+is_default: True
+manager: systemd
+Properties:
+**Requires=['system.slice', 'sysinit.target']
+**After=['systemd-journald.socket', 'system.slice', '-.mount', 'basic.target', 'network-online.target', 'sysinit.target']
+**SupplementaryGroups=[]
+**EnvironmentFiles=/home/test/printer_data/systemd/klipper.env
+**ExecStart=/home/test/klippy-env/bin/python $KLIPPER_ARGS
+**WorkingDirectory=/home/test/klipper
+**FragmentPath=/etc/systemd/system/klipper.service
+**Description=Klipper 3D Printer Firmware SV1
+**User=test
+2024-02-10 03:40:36,361 [server.py:_initialize_component()] - Performing Component Post Init: [history]
+2024-02-10 03:40:36,361 [server.py:_initialize_component()] - Performing Component Post Init: [update_manager]
+2024-02-10 03:40:36,443 [base_deploy.py:log_info()] - PackageDeploy: PackageKit Provider Configured
+2024-02-10 03:40:36,443 [base_deploy.py:log_info()] - Git Repo moonraker: Stored pip version: 23.3.2
+2024-02-10 03:40:36,949 [git_deploy.py:log_repo_info()] - Git Repo moonraker Detected:
+Owner: Arksine
+Repository Name: moonraker
+Path: /home/test/moonraker
+Remote: origin
+Branch: master
+Remote URL: https://github.com/Arksine/moonraker.git
+Recovery URL: https://github.com/Arksine/moonraker.git
+Current Commit SHA: 67c98f6a7610ff4196954a665e5599bea9ccf5ac
+Upstream Commit SHA: 67c98f6a7610ff4196954a665e5599bea9ccf5ac
+Current Version: v0.8.0-310-g67c98f6a
+Upstream Version: v0.8.0-310-g67c98f6a
+Rollback Commit: f946e6a28d7506d8da16851cbf730fa89b267926
+Rollback Branch: master
+Rollback Version: v0.8.0-309-gf946e6a2
+Is Dirty: False
+Is Detached: False
+Is Shallow: False
+Commits Behind Count: 0
+Diverged: False
+2024-02-10 03:40:37,454 [git_deploy.py:log_repo_info()] - Git Repo klipper Detected:
+Owner: Klipper3d
+Repository Name: klipper
+Path: /home/test/klipper
+Remote: origin
+Branch: master
+Remote URL: https://github.com/Klipper3d/klipper
+Recovery URL: https://github.com/Klipper3d/klipper
+Current Commit SHA: 6ce6fbbce07605010c0d4fa8eaa0ebcde01e53db
+Upstream Commit SHA: 6ce6fbbce07605010c0d4fa8eaa0ebcde01e53db
+Current Version: v0.12.0-103-g6ce6fbbc
+Upstream Version: v0.12.0-103-g6ce6fbbc
+Rollback Commit: 9f41f53c5e364694b9b41279b3b3aee34250b93a
+Rollback Branch: master
+Rollback Version: v0.12.0-102-g9f41f53c
+Is Dirty: False
+Is Detached: False
+Is Shallow: False
+Commits Behind Count: 0
+Diverged: False
+2024-02-10 03:40:37,959 [git_deploy.py:log_repo_info()] - Git Repo fluidd-config Detected:
+Owner: fluidd-core
+Repository Name: fluidd-config
+Path: /home/test/fluidd-config
+Remote: origin
+Branch: master
+Remote URL: https://github.com/fluidd-core/fluidd-config.git
+Recovery URL: https://github.com/fluidd-core/fluidd-config.git
+Current Commit SHA: ce48c5854e9ca3ca72b63d0327069fac20e94c7c
+Upstream Commit SHA: ce48c5854e9ca3ca72b63d0327069fac20e94c7c
+Current Version: v1.2.0-0-gce48c585
+Upstream Version: v1.2.0-0-gce48c585
+Rollback Commit: ce48c5854e9ca3ca72b63d0327069fac20e94c7c
+Rollback Branch: master
+Rollback Version: v0.0.0-11-gce48c585-inferred
+Is Dirty: False
+Is Detached: False
+Is Shallow: False
+Commits Behind Count: 0
+Diverged: False
+2024-02-10 03:40:37,960 [base_deploy.py:log_info()] - Web Client fluidd: Detected
+Repo: fluidd-core/fluidd
+Channel: stable
+Path: /home/test/fluidd
+Local Version: v1.28.0
+Remote Version: v1.28.0
+Valid: True
+Fallback Detected: False
+Pre-release: False
+Download Url: https://github.com/fluidd-core/fluidd/releases/download/v1.28.0/fluidd.zip
+Download Size: 3629558
+Content Type: application/zip
+Rollback Version: v1.27.1
+Rollback Repo: fluidd-core/fluidd
+2024-02-10 03:40:38,465 [git_deploy.py:log_repo_info()] - Git Repo klipper-backup Detected:
+Owner: Staubgeborener
+Repository Name: klipper-backup
+Path: /home/test/klipper-backup
+Remote: origin
+Branch: main
+Remote URL: https://github.com/Staubgeborener/klipper-backup.git
+Recovery URL: https://github.com/Staubgeborener/klipper-backup.git
+Current Commit SHA: 2346e4f996d9509b1c1ec0632499d4537d6cdf57
+Upstream Commit SHA: 2346e4f996d9509b1c1ec0632499d4537d6cdf57
+Current Version: 1.2.0-1-g2346e4f9
+Upstream Version: 1.2.0-1-g2346e4f9
+Rollback Commit: cb50055e3fee7cfb22d4ae235c72c00a5d93fd75
+Rollback Branch: main
+Rollback Version: 1.2.0-0-gcb50055e
+Is Dirty: False
+Is Detached: False
+Is Shallow: False
+Commits Behind Count: 0
+Diverged: False
+2024-02-10 03:40:38,465 [base_deploy.py:log_info()] - PackageKit: Next refresh in: 6 Days, 23 Hours, 59 Minutes, 49 Seconds
+2024-02-10 03:40:38,465 [base_deploy.py:log_info()] - Git Repo moonraker: Next refresh in: 6 Days, 23 Hours, 59 Minutes, 57 Seconds
+2024-02-10 03:40:38,465 [base_deploy.py:log_info()] - Git Repo klipper: Next refresh in: 6 Days, 23 Hours, 59 Minutes, 56 Seconds
+2024-02-10 03:40:38,465 [base_deploy.py:log_info()] - Git Repo fluidd-config: Next refresh in: 6 Days, 23 Hours, 59 Minutes, 51 Seconds
+2024-02-10 03:40:38,465 [base_deploy.py:log_info()] - Web Client fluidd: Next refresh in: 6 Days, 23 Hours, 59 Minutes, 55 Seconds
+2024-02-10 03:40:38,465 [base_deploy.py:log_info()] - Git Repo klipper-backup: Next refresh in: 6 Days, 23 Hours, 59 Minutes, 52 Seconds
+2024-02-10 03:40:38,466 [extensions.py:start_unix_server()] - Creating Unix Domain Socket at '/home/test/printer_data/comms/moonraker.sock'
+2024-02-10 03:40:38,466 [server.py:start_server()] - Starting Moonraker on (0.0.0.0, 7125), Hostname: klippertest
+2024-02-10 03:40:38,466 [application.py:listen()] - SSL Certificate/Key not configured, aborting HTTPS Server startup
+2024-02-10 03:40:38,717 [klippy_connection.py:_do_connect()] - Klippy Connection Established
+2024-02-10 03:40:38,979 [server.py:add_log_rollover_item()] - Klipper Version: v0.12.0-103-g6ce6fbbc
+2024-02-10 03:40:49,246 [authorization.py:_check_trusted_connection()] - Trusted Connection Detected, IP: 10.0.1.2
+2024-02-10 03:40:49,293 [application.py:log_request()] - 404 GET /server/database/item?namespace=webcams (10.0.1.2) [_TRUSTED_USER_] 3.43ms
+2024-02-10 03:40:49,311 [application.py:log_request()] - 101 GET /websocket?token=AFURG6UBHNDU6PHZSNW6C2RAQM6QLI4P (10.0.1.2) [_TRUSTED_USER_] 0.38ms
+2024-02-10 03:40:49,311 [websockets.py:open()] - Websocket Opened: ID: 140029002265104, Proxied: False, User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36, Host Name: 10.0.1.229
+2024-02-10 03:40:49,313 [websockets.py:_handle_identify()] - Websocket 140029002265104 Client Identified - Name: fluidd, Version: 1.28.0-4e52b69, Type: web
+2024-02-10 03:40:49,313 [file_manager.py:get_file_list()] - Updating File List <config>...
+2024-02-10 03:40:58,079 [base_deploy.py:log_info()] - PackageKit: Detected 0 package updates:
+
+2024-02-10 03:40:58,086 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/moonraker status --porcelain -b) successfully finished
+2024-02-10 03:40:58,090 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/moonraker branch --list --no-color) successfully finished
+2024-02-10 03:40:58,094 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/moonraker remote get-url origin) successfully finished
+2024-02-10 03:40:58,386 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/moonraker fetch origin --prune --progress) successfully finished
+2024-02-10 03:40:58,389 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/moonraker merge-base --is-ancestor HEAD origin/master) successfully finished
+2024-02-10 03:40:58,391 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/moonraker rev-parse HEAD) successfully finished
+2024-02-10 03:40:58,398 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/moonraker describe --always --tags --long --dirty --abbrev=8) successfully finished
+2024-02-10 03:40:58,400 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/moonraker rev-parse origin/master) successfully finished
+2024-02-10 03:40:58,407 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/moonraker describe origin/master --always --tags --long --abbrev=8) successfully finished
+2024-02-10 03:40:58,409 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/moonraker rev-list HEAD..67c98f6a7610ff4196954a665e5599bea9ccf5ac --count) successfully finished
+2024-02-10 03:40:58,409 [git_deploy.py:log_repo_info()] - Git Repo moonraker Detected:
+Owner: Arksine
+Repository Name: moonraker
+Path: /home/test/moonraker
+Remote: origin
+Branch: master
+Remote URL: https://github.com/Arksine/moonraker.git
+Recovery URL: https://github.com/Arksine/moonraker.git
+Current Commit SHA: 67c98f6a7610ff4196954a665e5599bea9ccf5ac
+Upstream Commit SHA: 67c98f6a7610ff4196954a665e5599bea9ccf5ac
+Current Version: v0.8.0-310-g67c98f6a
+Upstream Version: v0.8.0-310-g67c98f6a
+Rollback Commit: f946e6a28d7506d8da16851cbf730fa89b267926
+Rollback Branch: master
+Rollback Version: v0.8.0-309-gf946e6a2
+Is Dirty: False
+Is Detached: False
+Is Shallow: False
+Commits Behind Count: 0
+Diverged: False
+2024-02-10 03:40:58,409 [base_deploy.py:log_info()] - Git Repo moonraker: Channel: dev
+2024-02-10 03:40:58,409 [base_deploy.py:log_info()] - Git Repo moonraker: Validity check for git repo passed
+2024-02-10 03:40:58,426 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/klipper status --porcelain -b) successfully finished
+2024-02-10 03:40:58,431 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/klipper branch --list --no-color) successfully finished
+2024-02-10 03:40:58,434 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/klipper remote get-url origin) successfully finished
+2024-02-10 03:40:58,754 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/klipper fetch origin --prune --progress) successfully finished
+2024-02-10 03:40:58,757 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/klipper merge-base --is-ancestor HEAD origin/master) successfully finished
+2024-02-10 03:40:58,759 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/klipper rev-parse HEAD) successfully finished
+2024-02-10 03:40:58,800 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/klipper describe --always --tags --long --dirty --abbrev=8) successfully finished
+2024-02-10 03:40:58,802 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/klipper rev-parse origin/master) successfully finished
+2024-02-10 03:40:58,836 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/klipper describe origin/master --always --tags --long --abbrev=8) successfully finished
+2024-02-10 03:40:58,839 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/klipper rev-list HEAD..6ce6fbbce07605010c0d4fa8eaa0ebcde01e53db --count) successfully finished
+2024-02-10 03:40:58,839 [git_deploy.py:log_repo_info()] - Git Repo klipper Detected:
+Owner: Klipper3d
+Repository Name: klipper
+Path: /home/test/klipper
+Remote: origin
+Branch: master
+Remote URL: https://github.com/Klipper3d/klipper
+Recovery URL: https://github.com/Klipper3d/klipper
+Current Commit SHA: 6ce6fbbce07605010c0d4fa8eaa0ebcde01e53db
+Upstream Commit SHA: 6ce6fbbce07605010c0d4fa8eaa0ebcde01e53db
+Current Version: v0.12.0-103-g6ce6fbbc
+Upstream Version: v0.12.0-103-g6ce6fbbc
+Rollback Commit: 9f41f53c5e364694b9b41279b3b3aee34250b93a
+Rollback Branch: master
+Rollback Version: v0.12.0-102-g9f41f53c
+Is Dirty: False
+Is Detached: False
+Is Shallow: False
+Commits Behind Count: 0
+Diverged: False
+2024-02-10 03:40:58,839 [base_deploy.py:log_info()] - Git Repo klipper: Channel: dev
+2024-02-10 03:40:58,839 [base_deploy.py:log_info()] - Git Repo klipper: Validity check for git repo passed
+2024-02-10 03:40:58,842 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/fluidd-config status --porcelain -b) successfully finished
+2024-02-10 03:40:58,846 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/fluidd-config branch --list --no-color) successfully finished
+2024-02-10 03:40:58,850 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/fluidd-config remote get-url origin) successfully finished
+2024-02-10 03:40:59,160 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/fluidd-config fetch origin --prune --progress) successfully finished
+2024-02-10 03:40:59,162 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/fluidd-config merge-base --is-ancestor HEAD origin/master) successfully finished
+2024-02-10 03:40:59,164 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/fluidd-config rev-parse HEAD) successfully finished
+2024-02-10 03:40:59,167 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/fluidd-config describe --always --tags --long --dirty --abbrev=8) successfully finished
+2024-02-10 03:40:59,169 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/fluidd-config rev-parse origin/master) successfully finished
+2024-02-10 03:40:59,172 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/fluidd-config describe origin/master --always --tags --long --abbrev=8) successfully finished
+2024-02-10 03:40:59,175 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/fluidd-config rev-list HEAD..ce48c5854e9ca3ca72b63d0327069fac20e94c7c --count) successfully finished
+2024-02-10 03:40:59,175 [git_deploy.py:log_repo_info()] - Git Repo fluidd-config Detected:
+Owner: fluidd-core
+Repository Name: fluidd-config
+Path: /home/test/fluidd-config
+Remote: origin
+Branch: master
+Remote URL: https://github.com/fluidd-core/fluidd-config.git
+Recovery URL: https://github.com/fluidd-core/fluidd-config.git
+Current Commit SHA: ce48c5854e9ca3ca72b63d0327069fac20e94c7c
+Upstream Commit SHA: ce48c5854e9ca3ca72b63d0327069fac20e94c7c
+Current Version: v1.2.0-0-gce48c585
+Upstream Version: v1.2.0-0-gce48c585
+Rollback Commit: ce48c5854e9ca3ca72b63d0327069fac20e94c7c
+Rollback Branch: master
+Rollback Version: v0.0.0-11-gce48c585-inferred
+Is Dirty: False
+Is Detached: False
+Is Shallow: False
+Commits Behind Count: 0
+Diverged: False
+2024-02-10 03:40:59,175 [base_deploy.py:log_info()] - Git Repo fluidd-config: Channel: dev
+2024-02-10 03:40:59,175 [base_deploy.py:log_info()] - Git Repo fluidd-config: Validity check for git repo passed
+2024-02-10 03:40:59,370 [base_deploy.py:log_info()] - Web Client fluidd: Detected
+Repo: fluidd-core/fluidd
+Channel: stable
+Path: /home/test/fluidd
+Local Version: v1.28.0
+Remote Version: v1.28.0
+Valid: True
+Fallback Detected: False
+Pre-release: False
+Download Url: https://github.com/fluidd-core/fluidd/releases/download/v1.28.0/fluidd.zip
+Download Size: 3629558
+Content Type: application/zip
+Rollback Version: v1.27.1
+Rollback Repo: fluidd-core/fluidd
+2024-02-10 03:40:59,373 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/klipper-backup status --porcelain -b) successfully finished
+2024-02-10 03:40:59,378 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/klipper-backup branch --list --no-color) successfully finished
+2024-02-10 03:40:59,381 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/klipper-backup remote get-url origin) successfully finished
+2024-02-10 03:40:59,647 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/klipper-backup fetch origin --prune --progress) successfully finished
+2024-02-10 03:40:59,649 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/klipper-backup merge-base --is-ancestor HEAD origin/main) successfully finished
+2024-02-10 03:40:59,651 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/klipper-backup rev-parse HEAD) successfully finished
+2024-02-10 03:40:59,655 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/klipper-backup describe --always --tags --long --dirty --abbrev=8) successfully finished
+2024-02-10 03:40:59,657 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/klipper-backup rev-parse origin/main) successfully finished
+2024-02-10 03:40:59,660 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/klipper-backup describe origin/main --always --tags --long --abbrev=8) successfully finished
+2024-02-10 03:40:59,663 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/klipper-backup rev-list HEAD..2346e4f996d9509b1c1ec0632499d4537d6cdf57 --count) successfully finished
+2024-02-10 03:40:59,663 [git_deploy.py:log_repo_info()] - Git Repo klipper-backup Detected:
+Owner: Staubgeborener
+Repository Name: klipper-backup
+Path: /home/test/klipper-backup
+Remote: origin
+Branch: main
+Remote URL: https://github.com/Staubgeborener/klipper-backup.git
+Recovery URL: https://github.com/Staubgeborener/klipper-backup.git
+Current Commit SHA: 2346e4f996d9509b1c1ec0632499d4537d6cdf57
+Upstream Commit SHA: 2346e4f996d9509b1c1ec0632499d4537d6cdf57
+Current Version: 1.2.0-1-g2346e4f9
+Upstream Version: 1.2.0-1-g2346e4f9
+Rollback Commit: cb50055e3fee7cfb22d4ae235c72c00a5d93fd75
+Rollback Branch: main
+Rollback Version: 1.2.0-0-gcb50055e
+Is Dirty: False
+Is Detached: False
+Is Shallow: False
+Commits Behind Count: 0
+Diverged: False
+2024-02-10 03:40:59,663 [base_deploy.py:log_info()] - Git Repo klipper-backup: Channel: dev
+2024-02-10 03:40:59,663 [base_deploy.py:log_info()] - Git Repo klipper-backup: Validity check for git repo passed
+2024-02-10 03:42:04,529 [klippy_connection.py:_request_initial_subscriptions()] - Webhooks Subscribed
+2024-02-10 03:42:04,529 [klippy_connection.py:_request_initial_subscriptions()] - GCode Output Subscribed
+2024-02-10 03:42:04,529 [klippy_connection.py:_check_ready()] - 
+mcu 'mcu': Unable to connect
+Once the underlying issue is corrected, use the
+"FIRMWARE_RESTART" command to reset the firmware, reload the
+config, and restart the host software.
+Error configuring printer
+
+2024-02-10 03:42:47,979 [base_deploy.py:log_info()] - PackageKit: Detected 0 package updates:
+
+2024-02-10 03:42:47,984 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/moonraker status --porcelain -b) successfully finished
+2024-02-10 03:42:47,989 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/moonraker branch --list --no-color) successfully finished
+2024-02-10 03:42:47,994 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/moonraker remote get-url origin) successfully finished
+2024-02-10 03:42:48,287 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/moonraker fetch origin --prune --progress) successfully finished
+2024-02-10 03:42:48,290 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/moonraker merge-base --is-ancestor HEAD origin/master) successfully finished
+2024-02-10 03:42:48,291 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/moonraker rev-parse HEAD) successfully finished
+2024-02-10 03:42:48,299 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/moonraker describe --always --tags --long --dirty --abbrev=8) successfully finished
+2024-02-10 03:42:48,301 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/moonraker rev-parse origin/master) successfully finished
+2024-02-10 03:42:48,307 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/moonraker describe origin/master --always --tags --long --abbrev=8) successfully finished
+2024-02-10 03:42:48,309 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/moonraker rev-list HEAD..67c98f6a7610ff4196954a665e5599bea9ccf5ac --count) successfully finished
+2024-02-10 03:42:48,310 [git_deploy.py:log_repo_info()] - Git Repo moonraker Detected:
+Owner: Arksine
+Repository Name: moonraker
+Path: /home/test/moonraker
+Remote: origin
+Branch: master
+Remote URL: https://github.com/Arksine/moonraker.git
+Recovery URL: https://github.com/Arksine/moonraker.git
+Current Commit SHA: 67c98f6a7610ff4196954a665e5599bea9ccf5ac
+Upstream Commit SHA: 67c98f6a7610ff4196954a665e5599bea9ccf5ac
+Current Version: v0.8.0-310-g67c98f6a
+Upstream Version: v0.8.0-310-g67c98f6a
+Rollback Commit: f946e6a28d7506d8da16851cbf730fa89b267926
+Rollback Branch: master
+Rollback Version: v0.8.0-309-gf946e6a2
+Is Dirty: False
+Is Detached: False
+Is Shallow: False
+Commits Behind Count: 0
+Diverged: False
+2024-02-10 03:42:48,310 [base_deploy.py:log_info()] - Git Repo moonraker: Channel: dev
+2024-02-10 03:42:48,310 [base_deploy.py:log_info()] - Git Repo moonraker: Validity check for git repo passed
+2024-02-10 03:42:48,325 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/klipper status --porcelain -b) successfully finished
+2024-02-10 03:42:48,329 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/klipper branch --list --no-color) successfully finished
+2024-02-10 03:42:48,332 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/klipper remote get-url origin) successfully finished
+2024-02-10 03:42:48,648 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/klipper fetch origin --prune --progress) successfully finished
+2024-02-10 03:42:48,651 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/klipper merge-base --is-ancestor HEAD origin/master) successfully finished
+2024-02-10 03:42:48,653 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/klipper rev-parse HEAD) successfully finished
+2024-02-10 03:42:48,694 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/klipper describe --always --tags --long --dirty --abbrev=8) successfully finished
+2024-02-10 03:42:48,696 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/klipper rev-parse origin/master) successfully finished
+2024-02-10 03:42:48,733 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/klipper describe origin/master --always --tags --long --abbrev=8) successfully finished
+2024-02-10 03:42:48,736 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/klipper rev-list HEAD..6ce6fbbce07605010c0d4fa8eaa0ebcde01e53db --count) successfully finished
+2024-02-10 03:42:48,736 [git_deploy.py:log_repo_info()] - Git Repo klipper Detected:
+Owner: Klipper3d
+Repository Name: klipper
+Path: /home/test/klipper
+Remote: origin
+Branch: master
+Remote URL: https://github.com/Klipper3d/klipper
+Recovery URL: https://github.com/Klipper3d/klipper
+Current Commit SHA: 6ce6fbbce07605010c0d4fa8eaa0ebcde01e53db
+Upstream Commit SHA: 6ce6fbbce07605010c0d4fa8eaa0ebcde01e53db
+Current Version: v0.12.0-103-g6ce6fbbc
+Upstream Version: v0.12.0-103-g6ce6fbbc
+Rollback Commit: 9f41f53c5e364694b9b41279b3b3aee34250b93a
+Rollback Branch: master
+Rollback Version: v0.12.0-102-g9f41f53c
+Is Dirty: False
+Is Detached: False
+Is Shallow: False
+Commits Behind Count: 0
+Diverged: False
+2024-02-10 03:42:48,736 [base_deploy.py:log_info()] - Git Repo klipper: Channel: dev
+2024-02-10 03:42:48,737 [base_deploy.py:log_info()] - Git Repo klipper: Validity check for git repo passed
+2024-02-10 03:42:48,740 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/fluidd-config status --porcelain -b) successfully finished
+2024-02-10 03:42:48,745 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/fluidd-config branch --list --no-color) successfully finished
+2024-02-10 03:42:48,749 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/fluidd-config remote get-url origin) successfully finished
+2024-02-10 03:42:49,059 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/fluidd-config fetch origin --prune --progress) successfully finished
+2024-02-10 03:42:49,062 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/fluidd-config merge-base --is-ancestor HEAD origin/master) successfully finished
+2024-02-10 03:42:49,064 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/fluidd-config rev-parse HEAD) successfully finished
+2024-02-10 03:42:49,067 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/fluidd-config describe --always --tags --long --dirty --abbrev=8) successfully finished
+2024-02-10 03:42:49,069 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/fluidd-config rev-parse origin/master) successfully finished
+2024-02-10 03:42:49,072 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/fluidd-config describe origin/master --always --tags --long --abbrev=8) successfully finished
+2024-02-10 03:42:49,074 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/fluidd-config rev-list HEAD..ce48c5854e9ca3ca72b63d0327069fac20e94c7c --count) successfully finished
+2024-02-10 03:42:49,074 [git_deploy.py:log_repo_info()] - Git Repo fluidd-config Detected:
+Owner: fluidd-core
+Repository Name: fluidd-config
+Path: /home/test/fluidd-config
+Remote: origin
+Branch: master
+Remote URL: https://github.com/fluidd-core/fluidd-config.git
+Recovery URL: https://github.com/fluidd-core/fluidd-config.git
+Current Commit SHA: ce48c5854e9ca3ca72b63d0327069fac20e94c7c
+Upstream Commit SHA: ce48c5854e9ca3ca72b63d0327069fac20e94c7c
+Current Version: v1.2.0-0-gce48c585
+Upstream Version: v1.2.0-0-gce48c585
+Rollback Commit: ce48c5854e9ca3ca72b63d0327069fac20e94c7c
+Rollback Branch: master
+Rollback Version: v0.0.0-11-gce48c585-inferred
+Is Dirty: False
+Is Detached: False
+Is Shallow: False
+Commits Behind Count: 0
+Diverged: False
+2024-02-10 03:42:49,074 [base_deploy.py:log_info()] - Git Repo fluidd-config: Channel: dev
+2024-02-10 03:42:49,074 [base_deploy.py:log_info()] - Git Repo fluidd-config: Validity check for git repo passed
+2024-02-10 03:42:49,277 [base_deploy.py:log_info()] - Web Client fluidd: Detected
+Repo: fluidd-core/fluidd
+Channel: stable
+Path: /home/test/fluidd
+Local Version: v1.28.0
+Remote Version: v1.28.0
+Valid: True
+Fallback Detected: False
+Pre-release: False
+Download Url: https://github.com/fluidd-core/fluidd/releases/download/v1.28.0/fluidd.zip
+Download Size: 3629558
+Content Type: application/zip
+Rollback Version: v1.27.1
+Rollback Repo: fluidd-core/fluidd
+2024-02-10 03:42:49,282 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/klipper-backup status --porcelain -b) successfully finished
+2024-02-10 03:42:49,286 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/klipper-backup branch --list --no-color) successfully finished
+2024-02-10 03:42:49,290 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/klipper-backup remote get-url origin) successfully finished
+2024-02-10 03:42:49,583 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/klipper-backup fetch origin --prune --progress) successfully finished
+2024-02-10 03:42:49,585 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/klipper-backup merge-base --is-ancestor HEAD origin/main) successfully finished
+2024-02-10 03:42:49,587 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/klipper-backup rev-parse HEAD) successfully finished
+2024-02-10 03:42:49,590 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/klipper-backup describe --always --tags --long --dirty --abbrev=8) successfully finished
+2024-02-10 03:42:49,592 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/klipper-backup rev-parse origin/main) successfully finished
+2024-02-10 03:42:49,595 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/klipper-backup describe origin/main --always --tags --long --abbrev=8) successfully finished
+2024-02-10 03:42:49,598 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/klipper-backup rev-list HEAD..2346e4f996d9509b1c1ec0632499d4537d6cdf57 --count) successfully finished
+2024-02-10 03:42:49,598 [git_deploy.py:log_repo_info()] - Git Repo klipper-backup Detected:
+Owner: Staubgeborener
+Repository Name: klipper-backup
+Path: /home/test/klipper-backup
+Remote: origin
+Branch: main
+Remote URL: https://github.com/Staubgeborener/klipper-backup.git
+Recovery URL: https://github.com/Staubgeborener/klipper-backup.git
+Current Commit SHA: 2346e4f996d9509b1c1ec0632499d4537d6cdf57
+Upstream Commit SHA: 2346e4f996d9509b1c1ec0632499d4537d6cdf57
+Current Version: 1.2.0-1-g2346e4f9
+Upstream Version: 1.2.0-1-g2346e4f9
+Rollback Commit: cb50055e3fee7cfb22d4ae235c72c00a5d93fd75
+Rollback Branch: main
+Rollback Version: 1.2.0-0-gcb50055e
+Is Dirty: False
+Is Detached: False
+Is Shallow: False
+Commits Behind Count: 0
+Diverged: False
+2024-02-10 03:42:49,598 [base_deploy.py:log_info()] - Git Repo klipper-backup: Channel: dev
+2024-02-10 03:42:49,598 [base_deploy.py:log_info()] - Git Repo klipper-backup: Validity check for git repo passed
+2024-02-10 03:45:34,680 [base_deploy.py:log_info()] - PackageKit: Detected 0 package updates:
+
+2024-02-10 03:45:34,685 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/moonraker status --porcelain -b) successfully finished
+2024-02-10 03:45:34,689 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/moonraker branch --list --no-color) successfully finished
+2024-02-10 03:45:34,694 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/moonraker remote get-url origin) successfully finished
+2024-02-10 03:45:35,047 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/moonraker fetch origin --prune --progress) successfully finished
+2024-02-10 03:45:35,050 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/moonraker merge-base --is-ancestor HEAD origin/master) successfully finished
+2024-02-10 03:45:35,051 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/moonraker rev-parse HEAD) successfully finished
+2024-02-10 03:45:35,059 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/moonraker describe --always --tags --long --dirty --abbrev=8) successfully finished
+2024-02-10 03:45:35,061 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/moonraker rev-parse origin/master) successfully finished
+2024-02-10 03:45:35,067 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/moonraker describe origin/master --always --tags --long --abbrev=8) successfully finished
+2024-02-10 03:45:35,070 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/moonraker rev-list HEAD..67c98f6a7610ff4196954a665e5599bea9ccf5ac --count) successfully finished
+2024-02-10 03:45:35,070 [git_deploy.py:log_repo_info()] - Git Repo moonraker Detected:
+Owner: Arksine
+Repository Name: moonraker
+Path: /home/test/moonraker
+Remote: origin
+Branch: master
+Remote URL: https://github.com/Arksine/moonraker.git
+Recovery URL: https://github.com/Arksine/moonraker.git
+Current Commit SHA: 67c98f6a7610ff4196954a665e5599bea9ccf5ac
+Upstream Commit SHA: 67c98f6a7610ff4196954a665e5599bea9ccf5ac
+Current Version: v0.8.0-310-g67c98f6a
+Upstream Version: v0.8.0-310-g67c98f6a
+Rollback Commit: f946e6a28d7506d8da16851cbf730fa89b267926
+Rollback Branch: master
+Rollback Version: v0.8.0-309-gf946e6a2
+Is Dirty: False
+Is Detached: False
+Is Shallow: False
+Commits Behind Count: 0
+Diverged: False
+2024-02-10 03:45:35,070 [base_deploy.py:log_info()] - Git Repo moonraker: Channel: dev
+2024-02-10 03:45:35,070 [base_deploy.py:log_info()] - Git Repo moonraker: Validity check for git repo passed
+2024-02-10 03:45:35,085 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/klipper status --porcelain -b) successfully finished
+2024-02-10 03:45:35,089 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/klipper branch --list --no-color) successfully finished
+2024-02-10 03:45:35,093 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/klipper remote get-url origin) successfully finished
+2024-02-10 03:45:35,409 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/klipper fetch origin --prune --progress) successfully finished
+2024-02-10 03:45:35,411 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/klipper merge-base --is-ancestor HEAD origin/master) successfully finished
+2024-02-10 03:45:35,413 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/klipper rev-parse HEAD) successfully finished
+2024-02-10 03:45:35,452 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/klipper describe --always --tags --long --dirty --abbrev=8) successfully finished
+2024-02-10 03:45:35,454 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/klipper rev-parse origin/master) successfully finished
+2024-02-10 03:45:35,488 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/klipper describe origin/master --always --tags --long --abbrev=8) successfully finished
+2024-02-10 03:45:35,491 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/klipper rev-list HEAD..6ce6fbbce07605010c0d4fa8eaa0ebcde01e53db --count) successfully finished
+2024-02-10 03:45:35,491 [git_deploy.py:log_repo_info()] - Git Repo klipper Detected:
+Owner: Klipper3d
+Repository Name: klipper
+Path: /home/test/klipper
+Remote: origin
+Branch: master
+Remote URL: https://github.com/Klipper3d/klipper
+Recovery URL: https://github.com/Klipper3d/klipper
+Current Commit SHA: 6ce6fbbce07605010c0d4fa8eaa0ebcde01e53db
+Upstream Commit SHA: 6ce6fbbce07605010c0d4fa8eaa0ebcde01e53db
+Current Version: v0.12.0-103-g6ce6fbbc
+Upstream Version: v0.12.0-103-g6ce6fbbc
+Rollback Commit: 9f41f53c5e364694b9b41279b3b3aee34250b93a
+Rollback Branch: master
+Rollback Version: v0.12.0-102-g9f41f53c
+Is Dirty: False
+Is Detached: False
+Is Shallow: False
+Commits Behind Count: 0
+Diverged: False
+2024-02-10 03:45:35,491 [base_deploy.py:log_info()] - Git Repo klipper: Channel: dev
+2024-02-10 03:45:35,491 [base_deploy.py:log_info()] - Git Repo klipper: Validity check for git repo passed
+2024-02-10 03:45:35,494 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/fluidd-config status --porcelain -b) successfully finished
+2024-02-10 03:45:35,498 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/fluidd-config branch --list --no-color) successfully finished
+2024-02-10 03:45:35,502 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/fluidd-config remote get-url origin) successfully finished
+2024-02-10 03:45:35,843 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/fluidd-config fetch origin --prune --progress) successfully finished
+2024-02-10 03:45:35,846 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/fluidd-config merge-base --is-ancestor HEAD origin/master) successfully finished
+2024-02-10 03:45:35,848 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/fluidd-config rev-parse HEAD) successfully finished
+2024-02-10 03:45:35,851 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/fluidd-config describe --always --tags --long --dirty --abbrev=8) successfully finished
+2024-02-10 03:45:35,853 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/fluidd-config rev-parse origin/master) successfully finished
+2024-02-10 03:45:35,855 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/fluidd-config describe origin/master --always --tags --long --abbrev=8) successfully finished
+2024-02-10 03:45:35,858 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/fluidd-config rev-list HEAD..ce48c5854e9ca3ca72b63d0327069fac20e94c7c --count) successfully finished
+2024-02-10 03:45:35,858 [git_deploy.py:log_repo_info()] - Git Repo fluidd-config Detected:
+Owner: fluidd-core
+Repository Name: fluidd-config
+Path: /home/test/fluidd-config
+Remote: origin
+Branch: master
+Remote URL: https://github.com/fluidd-core/fluidd-config.git
+Recovery URL: https://github.com/fluidd-core/fluidd-config.git
+Current Commit SHA: ce48c5854e9ca3ca72b63d0327069fac20e94c7c
+Upstream Commit SHA: ce48c5854e9ca3ca72b63d0327069fac20e94c7c
+Current Version: v1.2.0-0-gce48c585
+Upstream Version: v1.2.0-0-gce48c585
+Rollback Commit: ce48c5854e9ca3ca72b63d0327069fac20e94c7c
+Rollback Branch: master
+Rollback Version: v0.0.0-11-gce48c585-inferred
+Is Dirty: False
+Is Detached: False
+Is Shallow: False
+Commits Behind Count: 0
+Diverged: False
+2024-02-10 03:45:35,858 [base_deploy.py:log_info()] - Git Repo fluidd-config: Channel: dev
+2024-02-10 03:45:35,858 [base_deploy.py:log_info()] - Git Repo fluidd-config: Validity check for git repo passed
+2024-02-10 03:45:36,038 [base_deploy.py:log_info()] - Web Client fluidd: Detected
+Repo: fluidd-core/fluidd
+Channel: stable
+Path: /home/test/fluidd
+Local Version: v1.28.0
+Remote Version: v1.28.0
+Valid: True
+Fallback Detected: False
+Pre-release: False
+Download Url: https://github.com/fluidd-core/fluidd/releases/download/v1.28.0/fluidd.zip
+Download Size: 3629558
+Content Type: application/zip
+Rollback Version: v1.27.1
+Rollback Repo: fluidd-core/fluidd
+2024-02-10 03:45:36,041 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/klipper-backup status --porcelain -b) successfully finished
+2024-02-10 03:45:36,045 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/klipper-backup branch --list --no-color) successfully finished
+2024-02-10 03:45:36,049 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/klipper-backup remote get-url origin) successfully finished
+2024-02-10 03:45:36,410 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/klipper-backup fetch origin --prune --progress) successfully finished
+2024-02-10 03:45:36,413 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/klipper-backup merge-base --is-ancestor HEAD origin/main) successfully finished
+2024-02-10 03:45:36,415 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/klipper-backup rev-parse HEAD) successfully finished
+2024-02-10 03:45:36,418 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/klipper-backup describe --always --tags --long --dirty --abbrev=8) successfully finished
+2024-02-10 03:45:36,420 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/klipper-backup rev-parse origin/main) successfully finished
+2024-02-10 03:45:36,423 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/klipper-backup describe origin/main --always --tags --long --abbrev=8) successfully finished
+2024-02-10 03:45:36,426 [shell_command.py:_check_proc_success()] - Command (git -C /home/test/klipper-backup rev-list HEAD..2346e4f996d9509b1c1ec0632499d4537d6cdf57 --count) successfully finished
+2024-02-10 03:45:36,426 [git_deploy.py:log_repo_info()] - Git Repo klipper-backup Detected:
+Owner: Staubgeborener
+Repository Name: klipper-backup
+Path: /home/test/klipper-backup
+Remote: origin
+Branch: main
+Remote URL: https://github.com/Staubgeborener/klipper-backup.git
+Recovery URL: https://github.com/Staubgeborener/klipper-backup.git
+Current Commit SHA: 2346e4f996d9509b1c1ec0632499d4537d6cdf57
+Upstream Commit SHA: 2346e4f996d9509b1c1ec0632499d4537d6cdf57
+Current Version: 1.2.0-1-g2346e4f9
+Upstream Version: 1.2.0-1-g2346e4f9
+Rollback Commit: cb50055e3fee7cfb22d4ae235c72c00a5d93fd75
+Rollback Branch: main
+Rollback Version: 1.2.0-0-gcb50055e
+Is Dirty: False
+Is Detached: False
+Is Shallow: False
+Commits Behind Count: 0
+Diverged: False
+2024-02-10 03:45:36,426 [base_deploy.py:log_info()] - Git Repo klipper-backup: Channel: dev
+2024-02-10 03:45:36,426 [base_deploy.py:log_info()] - Git Repo klipper-backup: Validity check for git repo passed
+2024-02-10 04:03:51,573 [application.py:prepare()] - Upload Request Received from 10.0.1.2
+Content-Type: 
+2024-02-10 04:03:51,574 [application.py:prepare()] - Upload Request Received from 10.0.1.2
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundarya0DLSHzlFfVqpQGx
+2024-02-10 04:03:51,577 [application.py:post()] - Processing Uploaded File: file.txt
+2024-02-10 04:03:51,578 [application.py:log_request()] - 201 POST /server/files/upload (10.0.1.2) [_TRUSTED_USER_] 3.64ms
+2024-02-10 04:14:15,630 [server.py:_handle_term_signal()] - Exiting with signal SIGTERM
+2024-02-10 04:14:15,632 [klippy_connection.py:_on_connection_closed()] - Klippy Connection Removed
+2024-02-10 04:14:15,638 [common.py:build_error()] - JSON-RPC Request Error - Requested Method: printer.info, Code: 503, Message: Klippy Host not connected
+2024-02-10 04:14:15,732 [websockets.py:on_close()] - Websocket Closed: ID: 140029002265104 Close Code: 1001, Close Reason: Server Shutdown, Pong Time Elapsed: 6.42
+2024-02-10 04:14:15,735 [database.py:close()] - Database statistics:
+
+announcements:
+psize: 4096
+depth: 0
+branch_pages: 0
+leaf_pages: 0
+overflow_pages: 0
+entries: 0
+authorized_users:
+psize: 4096
+depth: 1
+branch_pages: 0
+leaf_pages: 1
+overflow_pages: 0
+entries: 1
+fluidd:
+psize: 4096
+depth: 1
+branch_pages: 0
+leaf_pages: 1
+overflow_pages: 0
+entries: 6
+gcode_metadata:
+psize: 4096
+depth: 0
+branch_pages: 0
+leaf_pages: 0
+overflow_pages: 0
+entries: 0
+history:
+psize: 4096
+depth: 0
+branch_pages: 0
+leaf_pages: 0
+overflow_pages: 0
+entries: 0
+moonraker:
+psize: 4096
+depth: 1
+branch_pages: 0
+leaf_pages: 1
+overflow_pages: 0
+entries: 8
+update_manager:
+psize: 4096
+depth: 2
+branch_pages: 1
+leaf_pages: 2
+overflow_pages: 0
+entries: 6
+2024-02-10 04:14:15,746 [server.py:main()] - Server Shutdown
+-------------------- Log Start | Sat Feb 10 11:14:21 2024 --------------------
+data_path: /home/test/printer_data
+is_default_data_path: False
+config_file: /home/test/printer_data/config/moonraker.conf
+startup_warnings: []
+verbose: False
+debug: False
+asyncio_debug: False
+is_backup_config: False
+is_python_package: False
+instance_uuid: d50656f5433e49099928afcb992797bb
+unix_socket_path: /home/test/printer_data/comms/moonraker.sock
+software_version: v0.8.0-310-g67c98f6
+git_branch: master
+git_remote: origin
+git_repo_url: https://github.com/Arksine/moonraker.git
+modified_files: []
+unofficial_components: []
+log_file: /home/test/printer_data/logs/moonraker.log
+python_version: 3.11.2 (main, Mar 13 2023, 12:18:29) [GCC 12.2.0]
+launch_args: /home/test/moonraker-env/bin/python /home/test/moonraker/moonraker/moonraker.py -d /home/test/printer_data
+msgspec_enabled: False
+uvloop_enabled: False
+2024-02-10 12:14:21,942 [confighelper.py:read_file()] - Configuration File '/home/test/printer_data/config/moonraker.conf' parsed, total size: 911 B
+2024-02-10 12:14:21,942 [server.py:add_log_rollover_item()] - 
+#################### Moonraker Configuration ####################
+
+[server]
+host = 0.0.0.0
+port = 7125
+klippy_uds_address = /home/test/printer_data/comms/klippy.sock
+
+[authorization]
+trusted_clients = 
+	10.0.0.0/16
+	10.0.0.0/8
+	127.0.0.0/8
+	169.254.0.0/16
+	172.16.0.0/12
+	192.168.0.0/16
+	FE80::/10
+	::1/128
+cors_domains = 
+	*.lan
+	*.local
+	*://localhost
+	*://localhost:*
+	*://my.mainsail.xyz
+	*://app.fluidd.xyz
+
+[octoprint_compat]
+
+[history]
+
+[update_manager]
+channel = dev
+refresh_interval = 168
+
+[update_manager fluidd-config]
+type = git_repo
+primary_branch = master
+path = ~/fluidd-config
+origin = https://github.com/fluidd-core/fluidd-config.git
+managed_services = klipper
+
+[update_manager fluidd]
+type = web
+channel = stable
+repo = fluidd-core/fluidd
+path = ~/fluidd
+
+[update_manager klipper-backup]
+type = git_repo
+path = ~/klipper-backup
+origin = https://github.com/Staubgeborener/klipper-backup.git
+managed_services = moonraker
+primary_branch = main
+
+#################################################################
+All Configuration Files:
+/home/test/printer_data/config/moonraker.conf
+#################################################################
+2024-02-10 12:14:21,970 [server.py:load_component()] - Component (secrets) loaded
+2024-02-10 12:14:21,971 [server.py:load_component()] - Component (template) loaded
+2024-02-10 12:14:21,973 [server.py:load_component()] - Component (klippy_connection) loaded
+2024-02-10 12:14:22,134 [server.py:load_component()] - Component (application) loaded
+2024-02-10 12:14:22,141 [server.py:load_component()] - Component (websockets) loaded
+2024-02-10 12:14:22,159 [server.py:load_component()] - Component (dbus_manager) loaded
+2024-02-10 12:14:22,161 [server.py:add_log_rollover_item()] - 
+Database Versions: pylmdb = 1.4.1, lmdb = (0, 9, 29)
+Unsafe Shutdown Count: 2
+2024-02-10 12:14:22,163 [server.py:load_component()] - Component (database) loaded
+2024-02-10 12:14:22,168 [file_manager.py:__init__()] - Using File System Observer: inotify
+2024-02-10 12:14:22,171 [server.py:load_component()] - Component (file_manager) loaded
+2024-02-10 12:14:22,176 [authorization.py:__init__()] - Authorization Configuration Loaded
+Trusted Clients:
+10.0.0.0/16
+10.0.0.0/8
+127.0.0.0/8
+169.254.0.0/16
+172.16.0.0/12
+192.168.0.0/16
+fe80::/10
+::1/128
+CORS Domains:
+.*\.lan
+.*\.local
+.*://localhost
+.*://localhost:.*
+.*://my\.mainsail\.xyz
+.*://app\.fluidd\.xyz
+2024-02-10 12:14:22,177 [server.py:load_component()] - Component (authorization) loaded
+2024-02-10 12:14:22,178 [server.py:load_component()] - Component (klippy_apis) loaded
+2024-02-10 12:14:22,215 [server.py:add_log_rollover_item()] - 
+System Info:
+
+***python***
+  version: (3, 11, 2, 'final', 0)
+  version_string: 3.11.2 (main, Mar 13 2023, 12:18:29) [GCC 12.2.0]
+
+***cpu_info***
+  cpu_count: 4
+  bits: 64bit
+  processor: x86_64
+  cpu_desc: AMD Ryzen 7 2700 Eight-Core Processor
+  serial_number: 
+  hardware_desc: 
+  model: 
+  total_memory: 2097152
+  memory_units: kB
+
+***sd_info***
+
+***distribution***
+  name: Debian GNU/Linux 12 (bookworm)
+  id: debian
+  version: 12
+  version_parts: {'major': '12', 'minor': '', 'build_number': ''}
+  like: 
+  codename: bookworm
+  release_info: {}
+
+***virtualization***
+  virt_type: none
+  virt_identifier: none
+
+***network***
+
+***canbus***
+
+***Allowed Services***
+  klipper_mcu
+  webcamd
+  MoonCord
+  KlipperScreen
+  moonraker-telegram-bot
+  moonraker-obico
+  sonar
+  crowsnest
+  octoeverywhere
+  ratos-configurator
+2024-02-10 12:14:22,216 [server.py:load_component()] - Component (shell_command) loaded
+2024-02-10 12:14:22,216 [machine.py:__init__()] - Using System Provider: systemd_dbus
+2024-02-10 12:14:22,218 [server.py:add_log_rollover_item()] - Module libcamera unavailble, import failed
+2024-02-10 12:14:22,218 [server.py:load_component()] - Component (machine) loaded
+2024-02-10 12:14:22,219 [server.py:load_component()] - Component (data_store) loaded
+2024-02-10 12:14:22,219 [proc_stats.py:__init__()] - Unable to find 'vcgencmd', throttle checking disabled
+2024-02-10 12:14:22,220 [server.py:load_component()] - Component (proc_stats) loaded
+2024-02-10 12:14:22,220 [server.py:load_component()] - Component (job_state) loaded
+2024-02-10 12:14:22,221 [server.py:load_component()] - Component (job_queue) loaded
+2024-02-10 12:14:22,223 [server.py:load_component()] - Component (http_client) loaded
+2024-02-10 12:14:22,224 [server.py:load_component()] - Component (announcements) loaded
+2024-02-10 12:14:22,225 [server.py:load_component()] - Component (webcam) loaded
+2024-02-10 12:14:22,226 [server.py:load_component()] - Component (extensions) loaded
+2024-02-10 12:14:22,227 [server.py:load_component()] - Component (octoprint_compat) loaded
+2024-02-10 12:14:22,240 [base_deploy.py:log_info()] - Git Repo moonraker: Detected virtualenv: /home/test/moonraker-env
+2024-02-10 12:14:22,241 [base_deploy.py:log_info()] - Git Repo klipper: Detected virtualenv: /home/test/klippy-env
+2024-02-10 12:14:22,243 [server.py:load_component()] - Component (update_manager) loaded
+2024-02-10 12:14:22,244 [server.py:load_component()] - Component (history) loaded
+2024-02-10 12:14:22,244 [server.py:_initialize_component()] - Performing Component Post Init: [dbus_manager]
+2024-02-10 12:14:22,294 [server.py:_initialize_component()] - Performing Component Post Init: [file_manager]
+2024-02-10 12:14:22,295 [server.py:_initialize_component()] - Performing Component Post Init: [authorization]
+2024-02-10 12:14:22,295 [server.py:_initialize_component()] - Performing Component Post Init: [machine]
+2024-02-10 12:14:22,295 [machine.py:validation_init()] - Installation version in database up to date
+2024-02-10 12:14:22,481 [machine.py:check_virt_status()] - Virtualized Environment Detected, Type: container id: lxc
+2024-02-10 12:14:22,483 [machine.py:_find_public_ip()] - Detected Local IP: 10.0.1.229
+2024-02-10 12:14:22,483 [webcam.py:_set_default_host_ip()] - Default public webcam address set: http://10.0.1.229
+2024-02-10 12:14:22,494 [server.py:add_log_rollover_item()] - 
+Systemd unit moonraker.service:
+unit_name: moonraker.service
+is_default: True
+manager: systemd
+Properties:
+**Requires=['network-online.target', 'sysinit.target', 'system.slice']
+**After=['sysinit.target', 'system.slice', '-.mount', 'basic.target', 'network-online.target', 'systemd-journald.socket']
+**SupplementaryGroups=['moonraker-admin']
+**EnvironmentFiles=/home/test/printer_data/systemd/moonraker.env
+**ExecStart=/home/test/moonraker-env/bin/python $MOONRAKER_ARGS
+**WorkingDirectory=/home/test/moonraker
+**FragmentPath=/etc/systemd/system/moonraker.service
+**Description=API Server for Klipper SV1
+**User=test
+2024-02-10 12:14:22,494 [server.py:_initialize_component()] - Performing Component Post Init: [proc_stats]
+2024-02-10 12:14:22,494 [server.py:_initialize_component()] - Performing Component Post Init: [announcements]
+2024-02-10 12:14:22,494 [server.py:_initialize_component()] - Performing Component Post Init: [webcam]
+2024-02-10 12:14:22,494 [webcam.py:_set_default_host_ip()] - Default public webcam address set: http://10.0.1.229
+2024-02-10 12:14:22,495 [server.py:_initialize_component()] - Performing Component Post Init: [klippy_connection]
+2024-02-10 12:14:22,495 [server.py:add_log_rollover_item()] - 
+Systemd unit klipper.service:
+unit_name: klipper.service
+is_default: True
+manager: systemd
+Properties:
+**Requires=['system.slice', 'sysinit.target']
+**After=['systemd-journald.socket', 'system.slice', '-.mount', 'basic.target', 'network-online.target', 'sysinit.target']
+**SupplementaryGroups=[]
+**EnvironmentFiles=/home/test/printer_data/systemd/klipper.env
+**ExecStart=/home/test/klippy-env/bin/python $KLIPPER_ARGS
+**WorkingDirectory=/home/test/klipper
+**FragmentPath=/etc/systemd/system/klipper.service
+**Description=Klipper 3D Printer Firmware SV1
+**User=test
+2024-02-10 12:14:22,495 [server.py:_initialize_component()] - Performing Component Post Init: [update_manager]
+2024-02-10 12:14:22,495 [server.py:_initialize_component()] - Performing Component Post Init: [history]
+2024-02-10 12:14:22,642 [base_deploy.py:log_info()] - PackageDeploy: PackageKit Provider Configured
+2024-02-10 12:14:22,642 [base_deploy.py:log_info()] - Git Repo moonraker: Stored pip version: 23.3.2
+2024-02-10 12:14:23,148 [git_deploy.py:log_repo_info()] - Git Repo moonraker Detected:
+Owner: Arksine
+Repository Name: moonraker
+Path: /home/test/moonraker
+Remote: origin
+Branch: master
+Remote URL: https://github.com/Arksine/moonraker.git
+Recovery URL: https://github.com/Arksine/moonraker.git
+Current Commit SHA: 67c98f6a7610ff4196954a665e5599bea9ccf5ac
+Upstream Commit SHA: 67c98f6a7610ff4196954a665e5599bea9ccf5ac
+Current Version: v0.8.0-310-g67c98f6a
+Upstream Version: v0.8.0-310-g67c98f6a
+Rollback Commit: f946e6a28d7506d8da16851cbf730fa89b267926
+Rollback Branch: master
+Rollback Version: v0.8.0-309-gf946e6a2
+Is Dirty: False
+Is Detached: False
+Is Shallow: False
+Commits Behind Count: 0
+Diverged: False
+2024-02-10 12:14:23,652 [git_deploy.py:log_repo_info()] - Git Repo klipper Detected:
+Owner: Klipper3d
+Repository Name: klipper
+Path: /home/test/klipper
+Remote: origin
+Branch: master
+Remote URL: https://github.com/Klipper3d/klipper
+Recovery URL: https://github.com/Klipper3d/klipper
+Current Commit SHA: 6ce6fbbce07605010c0d4fa8eaa0ebcde01e53db
+Upstream Commit SHA: 6ce6fbbce07605010c0d4fa8eaa0ebcde01e53db
+Current Version: v0.12.0-103-g6ce6fbbc
+Upstream Version: v0.12.0-103-g6ce6fbbc
+Rollback Commit: 9f41f53c5e364694b9b41279b3b3aee34250b93a
+Rollback Branch: master
+Rollback Version: v0.12.0-102-g9f41f53c
+Is Dirty: False
+Is Detached: False
+Is Shallow: False
+Commits Behind Count: 0
+Diverged: False
+2024-02-10 12:14:24,157 [git_deploy.py:log_repo_info()] - Git Repo fluidd-config Detected:
+Owner: fluidd-core
+Repository Name: fluidd-config
+Path: /home/test/fluidd-config
+Remote: origin
+Branch: master
+Remote URL: https://github.com/fluidd-core/fluidd-config.git
+Recovery URL: https://github.com/fluidd-core/fluidd-config.git
+Current Commit SHA: ce48c5854e9ca3ca72b63d0327069fac20e94c7c
+Upstream Commit SHA: ce48c5854e9ca3ca72b63d0327069fac20e94c7c
+Current Version: v1.2.0-0-gce48c585
+Upstream Version: v1.2.0-0-gce48c585
+Rollback Commit: ce48c5854e9ca3ca72b63d0327069fac20e94c7c
+Rollback Branch: master
+Rollback Version: v0.0.0-11-gce48c585-inferred
+Is Dirty: False
+Is Detached: False
+Is Shallow: False
+Commits Behind Count: 0
+Diverged: False
+2024-02-10 12:14:24,158 [base_deploy.py:log_info()] - Web Client fluidd: Detected
+Repo: fluidd-core/fluidd
+Channel: stable
+Path: /home/test/fluidd
+Local Version: v1.28.0
+Remote Version: v1.28.0
+Valid: True
+Fallback Detected: False
+Pre-release: False
+Download Url: https://github.com/fluidd-core/fluidd/releases/download/v1.28.0/fluidd.zip
+Download Size: 3629558
+Content Type: application/zip
+Rollback Version: v1.27.1
+Rollback Repo: fluidd-core/fluidd
+2024-02-10 12:14:24,663 [git_deploy.py:log_repo_info()] - Git Repo klipper-backup Detected:
+Owner: Staubgeborener
+Repository Name: klipper-backup
+Path: /home/test/klipper-backup
+Remote: origin
+Branch: main
+Remote URL: https://github.com/Staubgeborener/klipper-backup.git
+Recovery URL: https://github.com/Staubgeborener/klipper-backup.git
+Current Commit SHA: 2346e4f996d9509b1c1ec0632499d4537d6cdf57
+Upstream Commit SHA: 2346e4f996d9509b1c1ec0632499d4537d6cdf57
+Current Version: 1.2.0-1-g2346e4f9
+Upstream Version: 1.2.0-1-g2346e4f9
+Rollback Commit: cb50055e3fee7cfb22d4ae235c72c00a5d93fd75
+Rollback Branch: main
+Rollback Version: 1.2.0-0-gcb50055e
+Is Dirty: False
+Is Detached: False
+Is Shallow: False
+Commits Behind Count: 0
+Diverged: False
+2024-02-10 12:14:24,663 [base_deploy.py:log_info()] - PackageKit: Next refresh in: 6 Days, 23 Hours, 31 Minutes, 10 Seconds
+2024-02-10 12:14:24,663 [base_deploy.py:log_info()] - Git Repo moonraker: Next refresh in: 6 Days, 23 Hours, 31 Minutes, 10 Seconds
+2024-02-10 12:14:24,663 [base_deploy.py:log_info()] - Git Repo klipper: Next refresh in: 6 Days, 23 Hours, 31 Minutes, 11 Seconds
+2024-02-10 12:14:24,663 [base_deploy.py:log_info()] - Git Repo fluidd-config: Next refresh in: 6 Days, 23 Hours, 31 Minutes, 11 Seconds
+2024-02-10 12:14:24,663 [base_deploy.py:log_info()] - Web Client fluidd: Next refresh in: 6 Days, 23 Hours, 31 Minutes, 11 Seconds
+2024-02-10 12:14:24,663 [base_deploy.py:log_info()] - Git Repo klipper-backup: Next refresh in: 6 Days, 23 Hours, 31 Minutes, 12 Seconds
+2024-02-10 12:14:24,664 [extensions.py:start_unix_server()] - Creating Unix Domain Socket at '/home/test/printer_data/comms/moonraker.sock'
+2024-02-10 12:14:24,664 [server.py:start_server()] - Starting Moonraker on (0.0.0.0, 7125), Hostname: klippertest
+2024-02-10 12:14:24,664 [application.py:listen()] - SSL Certificate/Key not configured, aborting HTTPS Server startup
+2024-02-10 12:14:24,915 [klippy_connection.py:_do_connect()] - Klippy Connection Established
+2024-02-10 12:14:24,927 [server.py:add_log_rollover_item()] - 
+Systemd unit klipper.service:
+unit_name: klipper.service
+is_default: True
+manager: systemd
+Properties:
+**Requires=['sysinit.target', 'system.slice']
+**After=['network-online.target', 'systemd-journald.socket', 'system.slice', '-.mount', 'sysinit.target', 'basic.target']
+**SupplementaryGroups=[]
+**EnvironmentFiles=/home/test/printer_data/systemd/klipper.env
+**ExecStart=/home/test/klippy-env/bin/python $KLIPPER_ARGS
+**WorkingDirectory=/home/test/klipper
+**FragmentPath=/etc/systemd/system/klipper.service
+**Description=Klipper 3D Printer Firmware SV1
+**User=test
+2024-02-10 12:14:25,178 [server.py:add_log_rollover_item()] - Klipper Version: v0.12.0-103-g6ce6fbbc
+2024-02-10 12:15:52,220 [klippy_connection.py:_request_initial_subscriptions()] - Webhooks Subscribed
+2024-02-10 12:15:52,220 [klippy_connection.py:_request_initial_subscriptions()] - GCode Output Subscribed
+2024-02-10 12:15:52,221 [klippy_connection.py:_check_ready()] - 
+mcu 'mcu': Unable to connect
+Once the underlying issue is corrected, use the
+"FIRMWARE_RESTART" command to reset the firmware, reload the
+config, and restart the host software.
+Error configuring printer
+
